@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="kosta.apt.mapper.AptMapper"> <!-- namespace를 꼭 맞게 써주어야함 -->
+   	<cache />
+   <select id="selectOneAPT" parameterType="int" resultType="APTGroup">
+   		select * from APTGroup where apt_aptgno = #{gno}
+   </select>
+   <update id="updateGroupMainImage" parameterType="APTGroup">
+   		update APTGroup set apt_mainimage = #{apt_mainImage} where apt_aptgno = #{apt_APTGNo}
+   </update>
+</mapper>
+
+
+
+
+
+
+
+

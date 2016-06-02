@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kosta.apt.mapper.VoterMapper"> <!-- namespace를 꼭 맞게 써주어야함 -->
+
+	<cache />
+
+	<select id="selectOneMember" parameterType="String" resultType="Member">
+		select * from member where m_memberNo = #{id}
+	</select>
+	
+
+	<select id="selectGroupPresi" resultType="Member" parameterType="int">
+		select * from member
+		where m_grade = 3 AND apt_aptgno = #{groupNo}
+	</select>
+<!-- 
+	<select id="selectAllEachCandi" parameterType="Candidate" resultType="Candidate"> 
+	 	select * from candidate where cd_group = #{cd_group} AND apt_APTGNo = #{apt_APTGNo}
+	</select> 
+	
+	<select id="selectBuildingPresi" resultType="Member" parameterType="java.util.HashMap">
+		select * from member
+			where m_grade = 4 AND apt_aptgno= #{groupNo} AND m_buildingNo = #{buildingNo}
+	</select>
+	
+	<update id="levelDownGroupPresi" parameterType="String">
+		update Member set m_grade = 1 
+			where m_memberNo = #{candi}
+	</update>
+	
+	<update id="levelDownBuildingPresi" parameterType="int">
+		update Member set m_grade = 1 
+			where apt_aptgno = #{groupNo} AND m_grade = 4
+	</update>
+	
+	<select id="searchSymbol" parameterType="int" resultType="Integer">
+		select cd_symbol from candidate where cd_symbol = #{s} 
+	</select>
+	
+	<select id="maxCandiNo" resultType="int">
+		select max(candidateNo) from candidate
+	</select>
+	<select id="maxVoterNo" resultType="int">
+		select max(v_voterno) from Voter
+	</select>
+	<insert id="insertCandidate" parameterType="Candidate">
+		insert into Candidate (
+		candidateno,cd_votenum, cd_group,cd_symbol,cd_edulevel,cd_job,cd_career,cd_promise,m_memberno,apt_aptgno,cd_imagename
+		) values(
+		#{candidateNo},0,#{cd_group},#{cd_symbol},#{cd_eduLevel},#{cd_job},#{cd_career},#{cd_promise},#{m_memberNo},#{apt_APTGNo},#{cd_imageName}
+		)
+	</insert>
+	<select id="selectOneCandi" resultType="Integer" parameterType="String">
+		select candidateno from Candidate where m_memberno = #{id}
+	</select>
+	
+	<update id="updateVflag" parameterType="Member">
+		update Member set v_flag = #{v_flag} where m_memberNo = #{m_memberNo}
+	</update>
+	<update id="updateV2flag" parameterType="Member">
+		update Member set v2_flag = #{v2_flag} where m_memberNo = #{m_memberNo}
+	</update>
+	<select id="totalGroupNum" resultType="int" parameterType="int">
+		select count(*) from Member where apt_aptgno = #{groupNo} 	
+	</select>
+	<select id="totalGPVoterNum" resultType="int" parameterType="int">
+		select count(*) from Voter where apt_aptgno = #{groupNo} AND v_group = 1
+	</select>
+	<select id="totalBPVoterNum" resultType="int" parameterType="int">
+		select count(*) from Voter where apt_aptgno = #{groupNo} AND v_group = 2
+	</select>
+	<update id="updateAllResiVflag" parameterType="java.util.HashMap">
+		update Member set v_flag = #{vflag} where apt_aptgno = #{groupNo}
+	</update>
+	<update id="updateAllResiV2flag" parameterType="java.util.HashMap">
+		update Member set v2_flag = #{v2flag} where apt_aptgno = #{groupNo}
+	</update>
+	<delete id="deleteCandidate" parameterType="int">
+		delete from candidate where candidateNo = #{candidateNo}
+	</delete>
+	<update id="updateHit" parameterType="int">
+		update Candidate set cd_voteNum = cd_voteNum+1 where cd_symbol = #{hit}
+	</update>
+	
+	<select id="selectTopGroupCandi" parameterType="int" resultType="String">
+		select * from Candidate 
+			where apt_aptgno = #{groupNo} AND cd_voteNum = (select max(cd_voteNum) from Candidate) AND cd_group='입주자대표'	</select>
+	<select id="selectBuildingGroupCandi" parameterType="java.util.HashMap" resultType="String">
+	 	select m_memberNo from Candidate
+	 		where apt_aptgno = #{groupNo} AND cd_voteNum = (select max(cd_voteNum) from Candidate where m_buildingNo = #{builNo}))
+	 			AND m_buildingNo = #{builNo}
+	</select>
+	<select id="selectTotalBuildingNum" parameterType="int">
+		select f_totalbuildingnum from facilityInfo where apt_aptgno = #{groupNo}
+	</select>
+	
+	<update id="updateGPGrade" parameterType="String">
+	 	update Member set m_grade = 3 where m_memberNo = #{mid}
+	</update>
+	<update id="updateBPGrade" parameterType="String">
+	 	update Member set m_grade = 4 where m_memberNo = #{mid}
+	</update>
+	
+	<insert id="insertVoter" parameterType="Voter">
+		insert into Voter(
+		v_voterNo,v_buildingno,v_roomno,m_memberno,apt_aptgno
+		) values ( #{v_voterNo},#{v_buildingNo},#{v_roomNo},#{m_memberNo},#{apt_APTGNo}
+		)
+	</insert>
+	<select id="selectAllVoter" parameterType="Voter" resultType="Voter">
+		select * from Voter where apt_aptgno = #{apt_APTGNo} AND v_group = #{v_group}
+	</select>
+	
+	<select id="maxBuildingNo" parameterType="int">
+		select max(m_buildingNo) from member where apt_aptgno = #{groupNo}
+	</select>
+	<select id="minBuildingNo" parameterType="int">
+		select min(m_buildingNo) from member where apt_aptgno = #{groupNo}
+	</select>
+	
+	<select id="AllBuildingNo" parameterType="int">
+		select m_buildingNo from member where apt_aptgno = #{groupNo}
+	</select>
+	
+	 -->
+</mapper>
+
+
+
+
+
+
+
+

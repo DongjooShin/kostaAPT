@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="apt.mapper.Management"> <!-- namespace를 꼭 맞게 써주어야함 -->
+   <cache />
+   <select id="selectPublicmanage" resultType="PublicManagementFee">
+     
+select PM_PUBLICFEENO,sum(pm_clean) pm_clean,sum(pm_general) pm_general,sum(pm_maintain) pm_maintain,sum(pm_liftMaintain) pm_liftMaintain,sum(pm_security) pm_security,
+sum(pm_foodWaste) pm_foodWaste,sum(pm_fireInsurance) pm_fireInsurance,sum(pm_commission) pm_commission,sum(pm_meeting) pm_meeting,sum(pm_publicElectric) pm_publicElectric,sum(pm_liftElectric) pm_liftElectric,
+sum(pm_TVFee) pm_TVFee,sum(pm_disinfection) pm_disinfection, apt_APTGNo from
+ (select substr(PM_PUBLICFEENO,1,4) PM_PUBLICFEENO,pm_clean ,pm_general ,pm_maintain ,pm_liftMaintain ,pm_security ,
+pm_foodWaste ,pm_fireInsurance ,pm_commission ,pm_meeting ,pm_publicElectric ,pm_liftElectric ,
+pm_TVFee ,pm_disinfection ,apt_APTGNo   from PublicManagementFee 
+  group by pm_publicFeeNo,pm_clean ,pm_general ,pm_maintain ,pm_liftMaintain ,pm_security ,pm_foodWaste ,pm_fireInsurance ,
+pm_commission ,pm_meeting ,pm_publicElectric ,pm_liftElectric ,pm_TVFee ,pm_disinfection ,apt_APTGNo
+   )
+  group by PM_PUBLICFEENO,apt_APTGNo
+  order by PM_PUBLICFEENO desc
+   </select> 
+
+	<select id="selectMonthPublicmanage" resultType="PublicManagementFee">
+	
+select *
+from PublicManagementFee 
+where pm_publicFeeNo in(#{day},#{day}-1)
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
