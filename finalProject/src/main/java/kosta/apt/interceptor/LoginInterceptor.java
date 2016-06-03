@@ -25,7 +25,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     if(session.getAttribute("member") != null){
     
-    	  System.out.println("로그인 상태");
+    System.out.println("로그인 상태");
       request.setAttribute("loginOn", 1);      
      
     }else{  

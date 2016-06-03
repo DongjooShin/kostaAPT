@@ -23,7 +23,7 @@ import kosta.apt.service.MemberService;
 
 @Controller
 
-@RequestMapping("/member/*")
+@RequestMapping("/member/")
 
 public class MemberController {
 

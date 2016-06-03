@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -14,11 +15,13 @@
 		<div class="header">
 			<jsp:include page="MypageHead.jsp"></jsp:include>
 		</div>
+		
+		<div class="col-lg-12">
 		<div class="col-lg-1"></div>
 		<div class="body col-lg-10">
 			<jsp:include page="MemberMypage.jsp"></jsp:include>
 		</div>
-		<div class="col-lg-1"></div>
+		</div>
 
 	</div>
 

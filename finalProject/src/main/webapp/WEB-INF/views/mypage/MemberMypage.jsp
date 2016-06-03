@@ -4,9 +4,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%
-	request.setAttribute("complaint", "complaint");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,10 +11,10 @@
         <link href="../../../resources/css/gidae/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="../../../resources/css/gidae/styles.css" rel="stylesheet" media="screen">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-            <script src="../../../resources/js/gidae/morris/morris-data.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+            <script src="../../../resources/js/gidae/gidae/morris/morris-data.js"></script>
             <script src="../../../resources/js/gidae/morris/raphael.min.js"></script>
     <script src="../../../resources/js/gidae/morris/morris.min.js"></script>
-    <script src="../../../resources/js/gidae/morris/morris-data.js"></script>
 	    <!-- Bootstrap Core CSS -->
     <link href="../../../resources/css/gidae/bootstrap.min.css" rel="stylesheet">
 
@@ -26,7 +23,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function next() {
-		window.location.href = "main.jsp?body=mypage.jsp?body2=listComplaint.jsp&&body=mypage.jsp";
+		window.location.href = "/list";
 	}
 </script>
 
@@ -77,19 +74,19 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>#</th>
+								<th>글번호</th>
 								<th>글 제목</th>
 								<th>진행도</th>
 							</tr>
 						</thead>
 						<tbody>
-							<%--                                       <c:forEach var="com" items="${complaint }">
+						     <c:forEach var="com" items="${complaint  }">
                                             <tr>
                                                 <td>${com.cp_complaintNo }</td>
                                                 <td>${com.cp_title }</td>
                                                 <td>${com.cp_state }</td>
                                             </tr>
-                                           </c:forEach> --%>
+                                           </c:forEach> 
 						</tbody>
 					</table>
 				</div>

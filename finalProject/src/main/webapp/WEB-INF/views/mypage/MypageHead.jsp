@@ -12,7 +12,7 @@
     				<div class="col-lg-1"></div>
                     <div class="row-fluid col-lg-10">
                         <div class="alert alert-success">
-                            <h4>관리자마이페이지</h4>
+                            <h4>${grade}</h4>
                         	</div>
                         	<div class="navbar">
                             	<div class="navbar-inner">
@@ -27,7 +27,7 @@
 	                                        <a href="#">관리비</a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li>
-	                                        <a href="/complaint">문의답변</a> <span class="divider">/</span>	
+	                                        <a href="/list">문의답변</a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li>
 	                                        <a href="#">건의함(사이트)</a> <span class="divider">/</span>	
