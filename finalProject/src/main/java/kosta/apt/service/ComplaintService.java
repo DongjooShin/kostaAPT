@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kosta.apt.domain.Paging.Criteria;
 import kosta.apt.domain.Paging.SearchCriteria;
 import kosta.apt.domain.complaint.Complaint;
+import kosta.apt.domain.complaint.Reply;
 import kosta.apt.persistence.ComplaintDao;
 
 @Service
@@ -49,6 +51,36 @@ public class ComplaintService {
 	public List<Complaint> mypageComplaint() {
 		// TODO Auto-generated method stub
 		return dao.mypageComplaint();
+	}
+
+	public void addReply(Reply reply) {
+		// TODO Auto-generated method stub
+		dao.addReply(reply);
+	}
+
+	public List<Reply> listReply(Integer cp_complaintNo) {
+		// TODO Auto-generated method stub
+		return dao.listReply(cp_complaintNo);
+	}
+
+	public void modifyReply(Reply vo) {
+		// TODO Auto-generated method stub
+		dao.modifyReply(vo);
+	}
+
+	public void removeReply(int rno) {
+		// TODO Auto-generated method stub
+		dao.removeReply(rno);
+	}
+
+	public List<Reply> listReplyPage(int cp_complaintNo, Criteria cri)throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listReplyPage(cp_complaintNo,cri);
+	}
+
+	public int count(int cp_complaintNo) {
+		// TODO Auto-generated method stub
+		return dao.replyCount(cp_complaintNo);
 	}
 
 }

@@ -1,18 +1,29 @@
 package kosta.apt.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kosta.apt.domain.Paging.Criteria;
 import kosta.apt.domain.Paging.PageMaker;
 import kosta.apt.domain.Paging.SearchCriteria;
 import kosta.apt.domain.complaint.Complaint;
+import kosta.apt.domain.complaint.Reply;
 import kosta.apt.domain.member.Member;
 import kosta.apt.service.ComplaintService;
 @Controller
@@ -68,5 +79,97 @@ public class ComplaintController {
 		   
 		   return"redirect:/list";
 	   }
+	   
+	   @RequestMapping("/replies")
+	   public ResponseEntity<String> getReply(@RequestBody Reply reply){
+		   ResponseEntity<String> entity=null;
+		   
+		   try {
+			service.addReply(reply);
+			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		   return entity;
+	   }
+	   
+	   
+		@RequestMapping(value ="/replies/all/{cp_complaintNo}", method=RequestMethod.GET)
+		public ResponseEntity<List<Reply>> list(@PathVariable("cp_complaintNo") Integer cp_complaintNo){ //객체를 JSON JSON을 객체를 반환한다. 
+			ResponseEntity<List<Reply>> entity = null;
+			try {
+				entity = new ResponseEntity<List<Reply>>(service.listReply(cp_complaintNo),HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return entity;
+		}
+		@RequestMapping(value ="/replies/{rno}", method= {RequestMethod.PUT,RequestMethod.PATCH})
+		public ResponseEntity<String> update
+						(@PathVariable("rno") int rno, @RequestBody Reply vo){
+			ResponseEntity<String> entity = null;
+			
+			try {
+				vo.setRno(rno);
+				service.modifyReply(vo);
+				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+				entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			}
+			
+			
+			return entity;
+		}
+		
+		@RequestMapping(value ="/replies/{rno}", method= RequestMethod.DELETE)
+		public ResponseEntity<String> delete
+		(@PathVariable("rno") int rno){
+			ResponseEntity<String> entity = null;
+			
+			try {
+				service.removeReply(rno);
+				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+				entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			}
+			
+			
+			return entity;
+		}
+		@RequestMapping(value="/replies/{cp_complaintNo}/{page}",method= RequestMethod.GET)
+		public ResponseEntity<Map<String, Object>> listpage(@PathVariable("cp_complaintNo") int cp_complaintNo,@PathVariable("page") int page){
+			
+			ResponseEntity<Map<String, Object>> entity = null;
+					
+			try {
+				Criteria cri = new Criteria();
+				cri.setPage(page);
+				
+				PageMaker maker = new PageMaker();
+				maker.setCri(cri);
+				
+				List<Reply> list = service.listReplyPage(cp_complaintNo, cri);
+				Map<String, Object> map = new HashMap<>();
+				
+				map.put("list", list);
+				
+				int replyCount =service.count(cp_complaintNo);
+				maker.setTotalCount(replyCount);
+				
+				map.put("pageMaker", maker);
+				
+				entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+			}
+			
+			return entity;
+			
+		}
 	   
 }

@@ -64,7 +64,7 @@
 					<div class="col-lg-2"></div>
 					<div class="col-lg-8">
 						<h2>관리비 내역</h2>
-						<button name="excel" value="엑셀파일로">엑셀파일로 보기</button>
+						<button name="excel" value="엑셀파일로" id="excel">엑셀파일로 보기</button>
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">
 								<thead>
@@ -288,5 +288,16 @@
 		</div>
 		</div>
 			<div class="footer"></div>
+			<script type="text/javascript">
+			$(function () {
+				
+				$('#excel').on('click',function(){
+					window.open('/getExcel', '엑셀파일');
+					
+				});
+			});
+			
+			
+			</script>
 </body>
 </html>

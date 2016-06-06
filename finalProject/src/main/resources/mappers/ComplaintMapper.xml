@@ -86,6 +86,60 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by cp_complaintNo desc)
 	 <![CDATA[where rownum <4]]>
 	</select>
+	
+	<insert id="addReply">
+	insert into reply values
+	(reply_seq.nextval,#{m_memberno},#{replytext},#{rdate},#{cp_complaintNo})
+	
+	
+	
+	</insert>
+	<select id="listReply" resultType="Reply">
+	select *
+	from reply
+	where cp_conplaintno =#{cp_complaintNo}
+	
+	
+	</select>
+	<update id="modifyReply">
+	update reply set replytext = #{replytext}
+	where rno =#{rno}
+	
+	
+	
+	
+	</update>
+	<delete id="removeReply">
+	delete from reply where rno =#{rno}
+	
+	</delete>
+	<select id="listReplyPage" resultType="Reply">
+	  <![CDATA[
+		 select 
+		  *
+		 from
+		   (
+		   select /*+INDEX_DESC(reply pk_reply))*/
+		     rownum rn, rno,m_memberno,replytext,rdate,cp_complaintNo
+		   from reply
+		   where cp_complaintNo = #{cp_complaintNo}
+		   and rno > 0
+		   and rownum <= #{cri.page} * #{cri.perPageNum}
+		   )
+		where rn > ( #{cri.page} -1) * #{cri.perPageNum}
+	  ]]> 
+	 </select>
+	 
+	 <select id="replyCount" resultType="int">
+	 select count(rno)
+	 from reply
+	 where cp_complaintNo =#{cp_complaintNo}
+	 
+	 
+	 
+	 </select>
+	
+	
 <!--   	<select id="read" resultType="BoardVO">
 		select
 		bno, title, content, writer, regdate, viewcnt,replycnt
