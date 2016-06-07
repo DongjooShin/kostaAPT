@@ -141,7 +141,7 @@
 									<c:forEach var="cn" items="${groupPresi }">
 										<div class="radio">
 											<table class="voteCandiList" style="width:250px; height:400px">
-												<tr><td><img alt="" src="C:/upload/${cn.cd_imageName}"></td></tr>
+												<tr><td><img alt="" src="C:\\upload\${cn.cd_imageName}"></td></tr>
 												<tr><td>기호 ${cn.cd_symbol} 번</td></tr>
 												<tr><td>${cn.candidateNo} 동 ${cn.cd_voteNum } 호</td></tr>
 												<tr><td style="padding:0 0 7 30;"><input type="radio" name="onechoose" value="${cn.cd_symbol }"></td></tr>

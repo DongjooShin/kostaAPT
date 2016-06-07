@@ -152,7 +152,7 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 									<ul class="sub-menu">
 										<li id="menu-item-110"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="main.jsp?body=APTGroupMain.jsp">아파트그룹</a></li>
+											href="/aptGroup/Main">아파트그룹</a></li>
 										<li id="menu-item-111"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
 											href="http://demo.themegrill.com/spacious/layout/right-sidebar/">개인정보관리</a></li>
