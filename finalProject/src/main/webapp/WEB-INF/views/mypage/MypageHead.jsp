@@ -11,8 +11,9 @@
 <body>
     				<div class="col-lg-1"></div>
                     <div class="row-fluid col-lg-10">
+                    		<br><br>
                         <div class="alert alert-success">
-                            <h4>${grade}</h4>
+                            <h3>${grade}</h3>
                         	</div>
                         	<div class="navbar">
                             	<div class="navbar-inner">

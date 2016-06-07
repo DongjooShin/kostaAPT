@@ -11,7 +11,7 @@
 	<div class="header">
 		<jsp:include page="../include/head.jsp"></jsp:include>
 	</div>
-	<div class="main">
+	<div class="main" id="page">
 		<div class="header">
 			<jsp:include page="MypageHead.jsp"></jsp:include>
 		</div>

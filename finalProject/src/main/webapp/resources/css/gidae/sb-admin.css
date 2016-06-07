@@ -7,7 +7,7 @@
 /* Global Styles */
 
 body {
-    margin-top: 100px;
+  
     background-color: white;
 }
 table{
@@ -16,7 +16,7 @@ table{
 }
 @media(min-width:768px) {
     body {
-        margin-top: 50px;
+      
     }
 }
 
