@@ -14,13 +14,31 @@
 <link rel='stylesheet' id='spacious-genericons-css'
 	href='/resources/bootstrap/bootstrap.min.css' type='text/css' media='all' />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>	
 </head>
 <body>
 <%-- -----------------Header include----------------- --%>	
 	<div class="header">
-		 <jsp:include page="../include/head.jsp"></jsp:include> 
+		 <jsp:include page="head.jsp"></jsp:include> 
 	</div>	
+
+<%--
+
+	//about v_flag
+	//case:manager
+	//1: there are no election. candidate regist button here
+	//2: manager is ongoing to put candidate. if manager changed that all president's grade, then v_flag will changed 2
+	//3: manager finished putting candidate and start election already. election is ongoing 
+	//4: election is end. result is noticing. if manager click the finish noticing, v_flag will change 1	
+	
+	//case:resident
+	//1: there are no election. Two president's information here
+	//2: election is start. And resident is not vote yet.
+	//3: election is ongoing. And resident is already votes. resident can see real time result
+	//4: election is end. Result is noticing. if result noticing is finished, v_flag will change 1
+		
+ --%>
 
 <%-- ------------------------------Body------------------------------------------- --%>
 	<div id= "page">
@@ -43,28 +61,54 @@
 					<%-- ......FLAG 3 : ELECTION IS PROCESSING...... --%>	
 						<c:when test="${m.getV_flag() == 3 }">
 							<br><br><br>
-							<h2>선거 진행 현황</h2><br>
-							<div class="col-md-2"></div>
-							<div class="col-md-8">
-								<form action="voteGroupPresi.jsp?changVflag=4" method="post">
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" aria-valuenow="2" 
-											aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: ${voterate}%;">
-													 ${voterate} %
-										</div>
+							<h3>선거 진행 현황</h3><br>
+							<form action="/voter/closeVote" method="get">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="2" 
+										aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: ${voterate}%;">
+												 ${voterate} %
 									</div>
-									<h4>현재 총 실 가구수 <b>${groupNum }</b> 가구 중  <b>${voterNum }</b> 가구의 투표로 ${voterate }% 의 투표가 이루어졌습니다.</h4>
-									<input type="hidden" name="m_id" value="${m.getM_memberNo() }">
-									<input type="hidden" name="changeVflag" value="4">
-									<div class="col-md-5"></div>
-									<div class="col-md-2" style="padding-left:0px;"><input id="closeElection" type="submit" value="선거종료"></div>
-									<div class="col-md-5"></div>
-								</form></div>
-							<div class="col-md-2"></div>
+								</div>
+								<h4>현재 총 실 가구수 <b>${groupNum }</b> 가구 중  <b>${voterNum }</b> 가구의 투표로 ${voterate }% 의 투표가 이루어졌습니다.</h4>
+								<div class="col-md-5"></div>
+								<div class="col-md-2" style="padding-left:0px;"><input type="submit" value="선거종료"></div>
+							</form>
 						</c:when>
 					<%-- ......FLAG 4 : RESULT IS NOTICING NOW...... --%>	
 						<c:when test="${m.getV_flag() == 4 }">
-						
+							<br>
+							<h3><img alt="" src="/resources/images/vote/fireworks.png">선거종료<img alt="" src="/resources/images/vote/fireworks.png"></h3>
+							<br><br><h3>선거결과</h3><br><br>
+							<div class="hGraph">
+								<ul>
+									<c:forEach var="vr" items="${vr }">
+										<li><span class="gTerm">${vr.name }</span>
+										<span class="gBar" style="width:${vr.percent }">
+										<span> ${vr.percent }%</span>
+										</span></li>
+									</c:forEach>
+								</ul>
+							</div>
+							<br><br>
+							<h4>최종투표율</h4><br><br>
+					
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="2" 
+									aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: ${voterate}%;">
+											 ${voterate} %
+								</div>
+							</div>
+							<h4 style="margin-top:30;">총 실 가구수 <b>${groupNum }</b><br></h4>
+							<h4 style="margin-top:5;">투표가구수 <b>${voterNum }</b><br></h4>
+							<h4 style="margin-top:5;">투표율 <b>${voterate }%</b><br></h4>
+				
+							<div class="col-md-5"></div>
+							<div class="col-md-2" style="padding-left:0px;">
+								<form action="/voter/returnFirst">
+									<br><input type="button" value="결과게시종료"style="margin-top:20px;margin-left:50px;">
+								</form>
+							</div>
+										
 						</c:when>
 					</c:choose>
 				</c:when>
@@ -72,8 +116,94 @@
 			
 			<%-- ***********************CASE : RESIDENT************************** --%>	
 				<c:otherwise>
+					
+					<c:choose>
+						<%-- ..........FLAG 1 : NO ELECTION.......... --%>
+						<c:when test="${m.getV_flag() == 1 }">
+							
+							<br><br><h3>우리 단지의 입주자 대표</h3><br><br>
+							<c:if test="${gpm != null }">
+								<table class="nowPresi">
+									<tr><td colspan="2">${gpm.getM_name() }</td></tr>
+									<tr><td colspan="2">${gpm.getM_memberNo() }</td></tr>
+									<tr><td>${gpm.getM_buildingNo()} 동</td><td>${gpm.getM_roomNo() } 호</td></tr>
+									<tr><td colspan="2">${gpm.getM_age() } 세</td></tr>
+									<tr><td colspan="2">${gpm.getM_email() }</td></tr>
+								</table>
+							</c:if>
+						</c:when>
+						<%-- .........FLAG 2 : ELECTION IS ONGOING & VOTE X........ --%>
+						<c:when test="${m.getV_flag() == 2}">
+							<br><h3>입주자대표 선거가 진행중입니다.</h3><br><br>
+							<h4>여러분의 소중한 한 표가 우리 아파트의 발전을 만들어 나갑니다.</h4><br>
+							<form action="/voter/voteSubmitOk" method="post">
+								<div class="container">
+									<c:forEach var="cn" items="${groupPresi }">
+										<div class="radio">
+											<table class="voteCandiList" style="width:250px; height:400px">
+												<tr><td><img alt="" src="C:/upload/${cn.cd_imageName}"></td></tr>
+												<tr><td>기호 ${cn.cd_symbol} 번</td></tr>
+												<tr><td>${cn.candidateNo} 동 ${cn.cd_voteNum } 호</td></tr>
+												<tr><td style="padding:0 0 7 30;"><input type="radio" name="onechoose" value="${cn.cd_symbol }"></td></tr>
+											</table>
+										</div>
+									</c:forEach>
+								</div>
+								<br><br>
+								<c:if test="${msg != null }">
+									<span id="msg">${msg }</span>
+								</c:if>
+								<br><br>
+								<div class="col-md-3"></div>
+								<div class="col-md-2"><input type="text" style="margin-right:50px" name = "pass" placeholder="비밀번호"></div>
+								<div class="col-md-1"><input type="submit" value="제출"></div>
+								<br><Br>
+							</form>
+								
+						</c:when>				
+						<%-- .........FLAG 3 : ELECTION IS ONGOING & VOTE O........ --%>
+						<c:when test="${m.getV_flag() == 3}">
+							<br><br>
+							<c:if test="${msg != null }">
+								<span id="msg">${msg }</span>
+							</c:if>
+							<div style="width:100%; height:100%;">
+								<marquee direction="up" behavior="alternate" height="100%"><marquee behavior="alternate" height="100%">
+									<h1><img alt="" src="/resources/images/vote/progressing1.png" width="100px">우리 단지의 투표가 진행중입니다.<img alt="" src="/resources/images/vote/progressing2.png" width="100px"> </h1>
+								</marquee></marquee>
+								<br><br>	
+							</div>
+						</c:when>
+						<%-- .........FLAG 4 : VOTE RESULT IS NOTICING........ --%>
+						<c:when test="${m.getV_flag() == 4}">
+							<br>
+							<h3><img alt="" src="/resources/images/vote/fireworks.png">선거종료<img alt="" src="/resources/images/vote/fireworks.png"></h3>
+							<br><br><h3>선거결과</h3><br><br>
+							<div class="hGraph">
+								<ul>
+									<c:forEach var="vr" items="${vr }">
+										<li><span class="gTerm">${vr.name }</span>
+										<span class="gBar" style="width:${vr.percent }">
+										<span> ${vr.percent }%</span>
+										</span></li>
+									</c:forEach>
+								</ul>
+							</div>
+							<br><br>
+							<h4>최종투표율</h4><br><br>
+					
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="2" 
+									aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: ${voterate}%;">
+											 ${voterate} %
+								</div>
+							</div>
+							<h4 style="margin-top:30;">총 실 가구수 <b>${groupNum }</b><br></h4>
+							<h4 style="margin-top:5;">투표가구수 <b>${voterNum }</b><br></h4>
+							<h4 style="margin-top:5;">투표율 <b>${voterate }%</b><br></h4>
 				
-			
+						</c:when>
+					</c:choose>
 				</c:otherwise>
 			<%-- ***********END OF RESIDENT CASE***************** --%>	
 			</c:choose>
@@ -88,7 +218,6 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+
 
 </body>
-</html>

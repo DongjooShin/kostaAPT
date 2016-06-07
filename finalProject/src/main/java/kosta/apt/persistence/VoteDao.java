@@ -1,17 +1,10 @@
 package kosta.apt.persistence;
 
 
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,10 +15,9 @@ import kosta.apt.mapper.VoterMapper;
 
 @Repository
 public class VoteDao {
-	
-	public static VoteDao dao = new VoteDao();
 
-	private SqlSession sqlSession;//ÏÑ∏ÏÖòÌÖåÌîåÎ†àÏù¥Ìä∏ ÏÉùÏÑ±
+	public static VoteDao dao = new VoteDao();
+	private SqlSession sqlSession;//ººº«≈◊«√∑π¿Ã∆Æ ª˝º∫
 	
 	@Autowired
 	public void setSqlSession(SqlSession sqlSession) {
@@ -33,10 +25,8 @@ public class VoteDao {
 		
 	}
 	
-	
 	public Member selectOneMember(String id){
 		Member m = new Member();
-		
 		m = sqlSession.getMapper(VoterMapper.class).selectOneMember(id);
 		
 		return m;
@@ -44,10 +34,70 @@ public class VoteDao {
 
 	public Member selectGroupPresi(int groupNo) {
 		Member m = null;
-
 		m = sqlSession.getMapper(VoterMapper.class).selectGroupPresi(groupNo);
 		
 		return m;
+	}
+	public List<Candidate> selectAllEachCandi(Candidate c){
+		List<Candidate> list=null;
+		list = sqlSession.getMapper(VoterMapper.class).selectAllEachCandi(c);
+		
+		return list;
+	}
+	public void updateVflag(int v,String id) {
+		
+		Member m = new Member();
+		m.setM_memberNo(id);
+		m.setV_flag(v);
+		sqlSession.getMapper(VoterMapper.class).updateVflag(m);
+		System.out.println("v:"+v+", id:"+id);
+	}
+	public Integer maxCandiNo(){
+		return sqlSession.getMapper(VoterMapper.class).maxCandiNo();
+	}
+	public Integer searchSymbol(int s){
+		Integer re = 0;
+		re = sqlSession.getMapper(VoterMapper.class).searchSymbol(s);
+	
+		return re;
+	}
+	public Integer selectOneCandi(String id){
+		return sqlSession.getMapper(VoterMapper.class).selectOneCandi(id);
+	}
+	public void insertCandidate(Candidate c){
+		sqlSession.getMapper(VoterMapper.class).insertCandidate(c);
+	}
+	public void levelDownGroupPresi(String candi){
+		sqlSession.getMapper(VoterMapper.class).levelDownGroupPresi(candi); 	
+	}
+	public void deleteCandidate(int candidateNo) {
+		sqlSession.getMapper(VoterMapper.class).deleteCandidate(candidateNo);
+	}
+	public int voterGPNum(Candidate c){
+		return sqlSession.getMapper(VoterMapper.class).selectVoterGPNum(c);
+	}
+	public int groupGPNum(int aptno){
+		return sqlSession.getMapper(VoterMapper.class).selectGroupGPNum(aptno);
+	}
+	public void updateAllVflag(HashMap<String, Integer> map){
+		sqlSession.getMapper(VoterMapper.class).updateAllVflag(map);
+	}
+	public String getMemberName(String id){
+		return sqlSession.getMapper(VoterMapper.class).getMemberName(id);
+	}
+
+	public void updateHit(int hit) {
+		sqlSession.getMapper(VoterMapper.class).updateHit(hit);
+	}
+	
+	public int maxVoterNo(){
+		return sqlSession.getMapper(VoterMapper.class).maxVoterNo();
+	}
+	public void insertVoter(Voter v) {
+		sqlSession.getMapper(VoterMapper.class).insertVoter(v);
+	}
+	public Voter selectExistVoter(HashMap<String, Integer> map){
+		return sqlSession.getMapper(VoterMapper.class).selectExistVoter(map);
 	}
 	/*
 	 public Member selectBuildingPresi(int groupNo,int buildingNo) {
@@ -67,36 +117,6 @@ public class VoteDao {
 		return list; 
 	 }
 
-	public List<Candidate> selectAllEachCandi(Candidate c){
-		List<Candidate> list=null;
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
-		try {
-			list = sqlSession.getMapper(VoterMapper.class).selectAllEachCandi(c);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		return list;
-	}
-	
-	public void levelDownGroupPresi(String candi){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		try { 
-			re = sqlSession.getMapper(VoterMapper.class).levelDownGroupPresi(candi); 
-			if(re>0){
-				   sqlSession.commit();
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-	}
 	public void levelDownBuildingPresi(int groupNo) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re=0;
@@ -114,119 +134,7 @@ public class VoteDao {
 		}
 		
 	}
-	public Integer searchSymbol(int s){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		Integer re = 0;
-		
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).searchSymbol(s);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-		return re;
-	}
-	public int maxCandiNo(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re = 0;
-		
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).maxCandiNo();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-		return re;
-	}
-	public int maxVoterNo(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re = 0;
-		
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).maxVoterNo();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-		return re;
-	}
-	
-	public void insertCandidate(Candidate c){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).insertCandidate(c);
-			if(re>0){
-				sqlSession.commit();
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-	}
-	public Integer selectOneCandi(String id){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).selectOneCandi(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		return re;
-	}
 
-	public void updateVflag(int v,String id) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		Member m = new Member();
-		m.setM_memberNo(id);
-		m.setV_flag(v);
-		try {
-			re=sqlSession.getMapper(VoterMapper.class).updateVflag(m);
-			if(re>0){
-				sqlSession.commit();
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-	}
-	public void updateV2flag(int v, String id) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		Member m = new Member();
-		m.setM_memberNo(id);
-		m.setV2_flag(v);
-		try {
-			re=sqlSession.getMapper(VoterMapper.class).updateV2flag(m);
-			if(re>0){
-				sqlSession.commit();
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-	}
 	public int totalGroupNum(int groupNo) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int count =0;
@@ -304,41 +212,7 @@ public class VoteDao {
 			sqlSession.close();
 		}
 	}
-	public void deleteCandidate(int candidateNo) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).deleteCandidate(candidateNo);
-			if(re>0){
-				sqlSession.commit();
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-	}
 
-	public void updateHit(int hit) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).updateHit(hit);
-			if(re>0){
-				sqlSession.commit();
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-	}
 
 	public String selectTopGroupCandi(int groupNo) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -443,23 +317,7 @@ public class VoteDao {
 			sqlSession.close();
 		}
 	}
-	public void insertVoter(Voter v) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re=0;
-		try {
-			re = sqlSession.getMapper(VoterMapper.class).insertVoter(v);
-			if(re>0){
-				sqlSession.commit();
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-	}
+
 
 	public List<Voter> selectAllVoter(Voter v) {
 		List<Voter> vlist = null;
@@ -477,8 +335,6 @@ public class VoteDao {
 
 	
 */
-
-	
 
 
 
