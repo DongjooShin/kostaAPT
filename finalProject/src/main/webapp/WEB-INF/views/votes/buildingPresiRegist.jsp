@@ -16,6 +16,17 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
 
+<script type="text/javascript">
+$('#putInto').tooltip({
+	placement: 'right',
+	viewport: {selector: 'body', padding:2}
+});
+$('#fileInto').tooltip({
+	placement: 'right',
+	viewport: {selector: 'body', padding:2}
+});
+</script>
+
 <title>Building President Regist</title>
 </head>
 <body>

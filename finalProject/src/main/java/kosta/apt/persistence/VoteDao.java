@@ -17,7 +17,7 @@ import kosta.apt.mapper.VoterMapper;
 public class VoteDao {
 
 	public static VoteDao dao = new VoteDao();
-	private SqlSession sqlSession;//세션테플레이트 생성
+	private SqlSession sqlSession;
 	
 	@Autowired
 	public void setSqlSession(SqlSession sqlSession) {

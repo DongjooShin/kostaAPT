@@ -13,7 +13,7 @@
 	media='all' />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="/resources/css/aptGroupMain/aptGroupMain.css"> 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
@@ -40,11 +40,14 @@
 		<div class="col-md-3">
 			<jsp:include page="CommunitySidebar.jsp"></jsp:include>
 		</div>
-		<div class="col-md-8">
-			<div style="width: 600px; height: 700px; border: 1px solid #bbb;"
-				id="main" data-toggle="tooltip" data-placement="right"
+		<div class="col-md-8" style="margin-left: 50px;">
+		<br><br><br>
+			<div id="main" data-toggle="tooltip" data-placement="right"
 				title="클릭으로  메인사진 변경">
-				<img alt="" src="/resources/images/groupMain/apartmentGroupMain1.jpg">
+				<img id="mainImage" alt="" src="/resources/images/groupMain/apartmentGroupMain1.jpg">
+				<div id="APTGroupName">
+					${groupName }
+				</div>
 			</div>
 
 		</div>

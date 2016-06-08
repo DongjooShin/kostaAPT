@@ -31,6 +31,8 @@ public class VoterController {
 	@Inject
 	private VoteService voteService;
 
+	
+//-------------------------case : group presi----------------------------------
 	@RequestMapping(value = "groupPresiMain", method = RequestMethod.GET)
 	public String managerGroupPresi(Model model) {
 
@@ -39,7 +41,7 @@ public class VoterController {
 		
 		Candidate c = new Candidate();
 		c.setApt_APTGNo(1);
-		c.setCd_group("�����ڴ�ǥ");
+		c.setCd_group("입주자대표");
 		List<Candidate> groupPresi = voteService.selectAllEachCandiService(c);
 		List<VoteResult> vr = new ArrayList<>();
 		
@@ -82,7 +84,7 @@ public class VoterController {
 		Member gpm = voteService.selectGroupPresiService(member.getApt_APTGNo());
 
 		Candidate c = new Candidate();
-		c.setCd_group("�����ڴ�ǥ");
+		c.setCd_group("입주자대표");
 		c.setApt_APTGNo(member.getApt_APTGNo());
 
 		List<Candidate> clist = voteService.selectAllEachCandiService(c);
@@ -116,13 +118,13 @@ public class VoterController {
 		}
 		
 		if (gpm != null) {
-			model.addAttribute("GPmessage", "������ �����ؾ� �ĺ��� �߰��� �� �ֽ��ϴ�.");
+			model.addAttribute("GPmessage", "현 입주자대표의 권한이 하향되지 않았습니다.");
 		} else {
 			if (voteService.searchSymbolService(c.getCd_symbol()) != null) {
-				model.addAttribute("GPmessage", "�̹� �����ϴ� ��ȣ�Դϴ�.");
+				model.addAttribute("GPmessage", "이미 존재하는 기호입니다.");
 			} else {
 				if (voteService.selectOneCandiService(c.getM_memberNo()) != null) {
-					model.addAttribute("GPmessage", "�̹� �����ϴ� �ĺ��Դϴ�.");
+					model.addAttribute("GPmessage", "이미 존재하는 후보입니다.");
 				} else {
 					String b_fname = null;
 					if (!file.isEmpty()) {
@@ -193,7 +195,7 @@ public class VoterController {
 	}
 	
 	public void getVoteRating(Model model){
-		int voterNum = voteService.voterGPNumService(1,"�����ڴ�ǥ");
+		int voterNum = voteService.voterGPNumService(1,"입주자대표");
 		int groupNum = voteService.groupGPNumService(1);
 		int voterate = voterNum*100/groupNum;
 	
@@ -226,7 +228,7 @@ public class VoterController {
 			Voter vcheck = voteService.selectExistVoterService(map);
 			
 			if(vcheck != null){
-				String message = "�ش� ��ȣ���� �̹� ��ǥ�Ͽ����ϴ�.";
+				String message = "이미 투표한 호수입니다.";
 				model.addAttribute("msg", message);
 				voteService.updateVflagService(3, "resident01");
 			}else{
@@ -240,16 +242,34 @@ public class VoterController {
 				}
 				voteService.updateHitService(hit);
 				voteService.updateVflagService(3, "resident01");
-				Voter v = new Voter(voteService.maxVoterNoService()+1, m.getM_buildingNo(), m.getM_roomNo(), m.getM_memberNo(), m.getApt_APTGNo(), "�����ڴ�ǥ");
+				Voter v = new Voter(voteService.maxVoterNoService()+1, m.getM_buildingNo(), m.getM_roomNo(), m.getM_memberNo(), m.getApt_APTGNo(), "입주자대표");
 			
 				voteService.insertVoterService(v);
 			}
 		}else{
-			String message = "��й�ȣ ����";
+			String message = "비밀번호 오류";
 			model.addAttribute("msg", message);
 		}
 		return managerGroupPresi(model);
 	}
+	
+//---------------------------------------------------------------------------------------
+	
+//-----------------------------case : building presi-------------------------------------
+	
+	@RequestMapping(value="buildingPresiMain",method=RequestMethod.GET)
+	public String buildingPresiMain(){
+		
+		
+		return "/votes/buildingPresiMain";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
