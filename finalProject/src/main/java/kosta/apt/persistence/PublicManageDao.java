@@ -41,4 +41,8 @@ public class PublicManageDao {
 		
 		return sqlSession.selectList(namespace+".selectPublicmanage");
 	}
+	public List<PublicManagementFee> MonthManageFee() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".MonthManageFee");
+	}
 }

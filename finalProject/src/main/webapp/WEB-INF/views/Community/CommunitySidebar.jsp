@@ -15,12 +15,11 @@
 <link rel='stylesheet' id='spacious_style-css' href='/resources/dist/css/main1.css'
 	type='text/css' media='all' />
 
-
 </head>
 <body>
 	<div id="page" class="hfeed site">
 
-		<div id="secondary" style="background-color: white;">
+		<div id="secondary" style="background-color: white;text-align: center;">
 			<aside id="archives" class="widget">
 			<h3 class="widget-title">아파트이름</h3>
 			<ul>

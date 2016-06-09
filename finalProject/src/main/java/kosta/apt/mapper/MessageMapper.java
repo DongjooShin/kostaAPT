@@ -24,6 +24,12 @@ public interface MessageMapper {
 
 	int sendPage(Criteria cri);
 
+	Message detailmsg(int msgno);
+
+	void delectMsg(int msgNo);
+
+	void updateState(int msgno);
+
 	
 	
 

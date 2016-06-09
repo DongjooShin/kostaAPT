@@ -34,6 +34,106 @@
       )
       
    </insert> 
+   
+   
+   <insert id="insertAPTsale" parameterType="Property">
+      
+     insert into Property(
+        pr_group,pr_APTName,pr_addr,pr_price,pr_deposit,pr_level,pr_totalLevel,pr_doorStruct,
+        pr_roomNum,pr_bathNum,pr_roomArea,pr_scale,pr_company,pr_content,
+        pr_propertyNo,pr_imageName,pr_tel,pr_date,m_memberNo
+      )
+      values(
+     #{pr_group},#{pr_APTName},#{pr_addr},#{pr_price},#{pr_deposit},#{pr_level},#{pr_totalLevel},
+     #{pr_doorStruct},#{pr_roomNum},#{pr_bathNum},#{pr_roomArea},#{pr_scale},#{pr_company},
+     #{pr_content},#{pr_propertyNo},#{pr_imageName},#{pr_tel},SYSDATE,#{m_memberNo}
+           )
+    
+   </insert>
+   
+   
+   
+   
+    <select id="selectPr_id" resultType="Integer">
+   	select  max(pr_propertyNo) from property
+   </select>
+   
+   
+   
+   <!-- 부동사내 매물목록 리턴 -->
+   
+   	<select id="aptlist" resultType="kosta.apt.domain.Property.Property" parameterType="kosta.apt.domain.Property.Property">
+	 <![CDATA[
+	 select 
+	 *
+	 from 
+	   Property
+	 where pr_propertyNo > 0 
+	 order by pr_propertyNo desc, pr_date desc
+	 ]]>
+	</select>
+	
+	
+	
+	  <select id="listCountCri" resultType="int" parameterType="kosta.apt.domain.Paging.Criteria">
+   <![CDATA[
+
+   	 select 
+	   count(pr_propertyNo) 
+	 from 
+	   Property 
+	 where 
+	   pr_propertyNo > 0 
+  
+   ]]>
+   
+   </select>
+   
+   
+   
+   <select id="aptSaledetail" resultType="kosta.apt.domain.Property.Property" parameterType="int">
+   select * from Property where pr_propertyNo = #{pr_propertyNo}
+   
+   </select>
+   
+   
+   
+   <!-- 부동산 매물 수정 -->
+   
+   <update id="aptUpdate" parameterType="kosta.apt.domain.Property.Property">
+   
+   update Property set pr_APTName =#{pr_APTName}, pr_addr = #{pr_addr}, pr_deposit = #{pr_deposit}, 
+   						pr_level = #{pr_level}, pr_totalLevel = #{pr_totalLevel}, pr_doorStruct = #{pr_doorStruct},
+   						pr_roomNum = #{pr_roomNum}, pr_bathNum = #{pr_bathNum}, pr_roomArea =#{pr_roomArea},
+   						pr_scale = #{pr_scale}, pr_company = #{pr_company}, pr_content = #{pr_content}, pr_imageName = #{pr_imageName},
+   						where pr_propertyNo =#{pr_propertyNo}
+ 	 </update>
+   
+   
+   <!-- 부동산 매물 삭제  -->
+   
+   <delete id="aptDelete" parameterType="int">
+   
+   delete from Property where pr_propertyNo = #{pr_propertyNo}
+   
+   </delete>
+   
+   
+   
+   
+   	<select id="surveyResultTitle" resultType="kosta.apt.domain.Survey.SurveyDB">
+	 <![CDATA[
+	 select 
+	  *
+	 from 
+	   SurveyDB
+	 where su_group > 0 
+	 order by su_startdate desc
+	 ]]>
+	</select>
+	
+   
+   
 <!--  	<select id="aptno" resultType="Integer">
  	select APT_APTGNO
  	from member

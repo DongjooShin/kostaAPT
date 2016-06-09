@@ -127,20 +127,20 @@
 
 								<li id="menu-item-254"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-254"><a
-									href="http://demo.themegrill.com/spacious/shop/">고객센터</a>
+									href="/siteNotice/faq">고객센터</a>
 									<ul class="sub-menu">
 										<li id="menu-item-106"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="main.jsp">FAQ</a></li>
+											href="/siteNotice/faq">FAQ</a></li>
 										<li id="menu-item-107"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
-											href="main.jsp">1:1문의</a></li>
+											href="/siteNotice/">1:1문의</a></li>
 										<li id="menu-item-108"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
-											href="main.jsp">공지사항</a></li>
+											href="/siteNotice/siteNoticeAllList">공지사항</a></li>
 										<li id="menu-item-109"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
-											href="main.jsp">가입문의</a></li>
+											href="/siteNotice/">가입문의</a></li>
 									</ul></li>
 								<li id="menu-item-105"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-105"><a
@@ -148,7 +148,7 @@
 									<ul class="sub-menu">
 										<li id="menu-item-110"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="main.jsp?body=APTGroupMain.jsp">아파트그룹</a></li>
+											href="/aptGroup/Main">아파트그룹</a></li>
 										<li id="menu-item-111"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
 											href="http://demo.themegrill.com/spacious/layout/right-sidebar/">개인정보관리</a></li>

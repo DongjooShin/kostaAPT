@@ -17,7 +17,7 @@
 
 	<mappers>
 		<mapper class="kosta.apt.mapper.VoterMapper" />
-	
+		<mapper class="kosta.apt.mapper.SiteNoticeMapper"/>
 	</mappers>
 </configuration>
 

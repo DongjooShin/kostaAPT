@@ -10,6 +10,9 @@
 	<div class="header">
 		<jsp:include page="../include/head.jsp"></jsp:include>
 	</div>
+		<div>
+			<jsp:include page="../mypage/MypageHead.jsp"/>
+		</div>
 	<div class="body" id="page">
 			<jsp:include page="../../../resources/editor/SmartEditor2.jsp"></jsp:include>
 
