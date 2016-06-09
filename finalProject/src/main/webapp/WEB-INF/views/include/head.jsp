@@ -1,6 +1,6 @@
-f<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,26 +8,24 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 <title>Insert title here</title>
 
 
+<link rel='stylesheet' href='/resources/bootstrap/bootstrap.min.css'
+	type='text/css' rel="stylesheet" />
+<link rel='stylesheet' href='/resources/dist/css/mainFont.css'
+	type='text/css' rel="stylesheet" />
 <link rel='stylesheet'
-	href='/resources/bootstrap/bootstrap.min.css' type='text/css' rel="stylesheet" />
-<link rel='stylesheet' 
-	href='/resources/dist/css/mainFont.css' type='text/css' rel="stylesheet" />
-<link rel='stylesheet' 
 	href='//fonts.googleapis.com/css?family=Lato&#038;ver=e7d1598c32c9180e5e08e97723f82bcd'
 	type='text/css' media='all' />
-<link rel='stylesheet'  href='/resources/dist/css/main1.css'
+<link rel='stylesheet' href='/resources/dist/css/main1.css'
 	type='text/css' rel="stylesheet" />
 <script type='text/javascript' src='/resources/dist/js/main1.js'></script>
 <script type='text/javascript' src='/resources/dist/js/main2.js'></script>
 <script type='text/javascript' src='/resources/dist/js/main3.js'></script>
 <link rel='stylesheet' id='spacious-genericons-css'
 	href='/resources/dist/css/headerCss.css' type='text/css' media='all' />
-
-
 </head>
 
 <body>
-	
+
 	<div id="page" class="hfeed site">
 		<header id="masthead" class="site-header clearfix">
 
@@ -37,16 +35,14 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<div id="header-text-nav-wrap" class="clearfix">
 					<div id="header-left-section">
 						<div id="header-logo-image">
-							<a href="main" title="Spacious"
-								rel="home"><img
+							<a href="/main" title="Spacious" rel="home"><img
 								src="http://demo.themegrill.com/spacious/wp-content/uploads/sites/2/2014/03/spacious-logo.png"
 								alt="Spacious"></a>
 						</div>
 						<!-- #header-logo-image -->
 						<div id="header-text" class="">
 							<h1 id="site-title">
-								<a href="main" title="Spacious"
-									rel="home">Apart Manage</a>
+								<a href="/main" title="Spacious" rel="home">Apart Manage</a>
 							</h1>
 							<p id="site-description">Apart Manage</p>
 							<!-- #site-description -->
@@ -57,16 +53,16 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 					<div id="header-right-section">
 						<div id="header-right-sidebar" class="clearfix">
 							<ul class="sub-menu1 ">
-							<c:if test="${loginOn !=1 }">
-								<li><a href="/member/login">로그인</a></li>
-								<li><a href="/member/loginCheck">회원가입</a></li>
-							</c:if>
-							
-							<c:if test="${loginOn ==1 }">
-								<li><a href="/member/logout">로그아웃</a></li>
-								<li><a href="/member/changeMemberInfo">내정보수정</a></li>
-							</c:if>
-							
+								<c:if test="${loginOn !=1 }">
+									<li><a href="/member/login">로그인</a></li>
+									<li><a href="/member/loginCheck">회원가입</a></li>
+								</c:if>
+
+								<c:if test="${loginOn ==1 }">
+									<li><a href="/member/logout">로그아웃</a></li>
+									<li><a href="/member/changeMemberInfo">내정보수정</a></li>
+								</c:if>
+
 								<li><a href="main.jsp?body=login.jsp">설문지 보기</a></li>
 							</ul>
 
@@ -76,7 +72,7 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 									class="search-form searchform clearfix" method="get">
 									<div class="search-wrap">
 										<input type="text" placeholder="Search" class="s field"
-											name="s" id="head-serch" >
+											name="s" id="head-serch">
 										<button class="search-icon" type="submit"></button>
 									</div>
 								</form>
@@ -93,7 +89,7 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 									<ul class="sub-menu">
 										<li id="menu-item-109"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="http://demo.themegrill.com/spacious/layout/left-sidebar/">전체관리비</a></li>
+											href="managementFeeList">전체관리비</a></li>
 										<li id="menu-item-108"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
 											href="http://demo.themegrill.com/spacious/layout/right-sidebar/">전기세</a></li>
@@ -159,14 +155,26 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 										<li id="menu-item-112"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
 											href="http://demo.themegrill.com/spacious/layout/no-sidebar-full-width/">마이페이지</a></li>
-										<li id="menu-item-111"
+										<li id="menu-item-113"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
 											href="/controller/readMessageList">메세지함</a></li>
-										<li id="menu-item-111"
+										<li id="menu-item-114"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
 											href="/controller/aptMessage">메세지보내기</a></li>
-											
-											
+										<li id="menu-item-115"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
+											href="managementFeeInsertForm">관리비입력</a></li>
+										<li id="menu-item-116"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a
+											href="publicManagementFeeInsertForm">공동관리비입력</a></li>
+										<li id="menu-item-117"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a
+											href="budgetInsertForm">예산입력</a></li>
+										<li id="menu-item-117"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a
+											href="budgetList">예산조회</a></li>
+																				
+
 									</ul></li>
 
 
