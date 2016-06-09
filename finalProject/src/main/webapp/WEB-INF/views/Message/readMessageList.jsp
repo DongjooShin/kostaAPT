@@ -23,7 +23,7 @@ function detailMsg(id2){
 	url = "/Message/aptMsgdetail?sep="+id2;
 	alert(url);
 	
-	open(
+	open(    
 			url,
 			"confirm",
 			"toolbar=no, status=no, menubar=no, location=no, scrollbars=no, resizable=no, width=410, height=280");
