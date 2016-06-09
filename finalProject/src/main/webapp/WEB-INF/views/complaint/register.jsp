@@ -9,6 +9,7 @@
 </div>
 
 <div>
+
 	<div class="col-lg-2"></div>
 	<div class="col-lg-10" style="background-color: white;">
 		<!-- Main content -->

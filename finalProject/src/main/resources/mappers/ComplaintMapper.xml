@@ -139,6 +139,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 
 	 </select>
 	
+	<update id="addRef">
+	update complaint set cp_ref = cp_ref + #{ref}
+	where cp_complaintNo = #{complaintno}
+	</update>
 	
 <!--   	<select id="read" resultType="BoardVO">
 		select

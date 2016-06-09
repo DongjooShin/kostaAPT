@@ -42,16 +42,19 @@ public class ComplaintController {
 		   pagemaker.setTotalCount(service.listSearchCount(cri));
 		   model.addAttribute("pageMaker", pagemaker);
 		
-		return "complaint/list";
+		return "complaint/complaintList";
 	}
 	@RequestMapping(value = "/register", method = RequestMethod.GET )
-	public String List(){
+	public String List(Model model,HttpSession session){
 		
-		return "complaint/register";
+		Member member = (Member) session.getAttribute("member");
+		model.addAttribute("member", member);
+		return "complaint/ComplaintRegister";
 	}
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String List(Complaint complaint,HttpSession session){
 		Member member = (Member) session.getAttribute("member");
+		
 		complaint.setM_memberNo(member.getM_memberNo());
 		service.create(complaint);
 		return "redirect:/list";
@@ -64,7 +67,7 @@ public class ComplaintController {
 		   model.addAttribute(member);
 		   model.addAttribute(service.read(cp_complaintNo));
 		   
-		   return "complaint/readPage";
+		   return "complaint/complaintReadPage";
 	   }
 	   
 	   @RequestMapping(value="/modifyPage",method=RequestMethod.POST)
@@ -83,9 +86,10 @@ public class ComplaintController {
 	   @RequestMapping("/replies")
 	   public ResponseEntity<String> getReply(@RequestBody Reply reply){
 		   ResponseEntity<String> entity=null;
-		   
+		   int ref =1;
 		   try {
 			service.addReply(reply);
+			service.addRef(ref,reply.getCp_complaintNo());
 			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -98,6 +102,7 @@ public class ComplaintController {
 		@RequestMapping(value ="/replies/all/{cp_complaintNo}", method=RequestMethod.GET)
 		public ResponseEntity<List<Reply>> list(@PathVariable("cp_complaintNo") Integer cp_complaintNo){ //객체를 JSON JSON을 객체를 반환한다. 
 			ResponseEntity<List<Reply>> entity = null;
+			System.out.println(service.listReply(cp_complaintNo));
 			try {
 				entity = new ResponseEntity<List<Reply>>(service.listReply(cp_complaintNo),HttpStatus.OK);
 			} catch (Exception e) {
@@ -109,10 +114,10 @@ public class ComplaintController {
 		public ResponseEntity<String> update
 						(@PathVariable("rno") int rno, @RequestBody Reply vo){
 			ResponseEntity<String> entity = null;
-			
 			try {
 				vo.setRno(rno);
 				service.modifyReply(vo);
+				
 				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -125,11 +130,13 @@ public class ComplaintController {
 		
 		@RequestMapping(value ="/replies/{rno}", method= RequestMethod.DELETE)
 		public ResponseEntity<String> delete
-		(@PathVariable("rno") int rno){
+		(@PathVariable("rno") int rno ,@RequestBody Reply reply){
 			ResponseEntity<String> entity = null;
-			
+			System.out.println(reply.getCp_complaintNo()+"게시글~~~~~~~ 번호~~~~~");
+			int ref =-1;
 			try {
 				service.removeReply(rno);
+				service.addRef(ref, reply.getCp_complaintNo());
 				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			} catch (Exception e) {
 				// TODO: handle exception

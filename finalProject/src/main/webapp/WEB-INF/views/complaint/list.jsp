@@ -4,13 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<div class="header">
-		<jsp:include page="../include/head.jsp"></jsp:include>
-	</div>
-		<div>
-			<jsp:include page="../mypage/MypageHead.jsp"/>
-		</div>
-		
 		
 <!-- Main content -->
 <section class="content">
@@ -22,7 +15,7 @@
 			<!-- general form elements -->
 			<div class='box'>
 				<div class="box-header with-border">
-					<h3 class="box-title">Board List</h3>
+					<h3 class="box-title">건의 / 불만 게시판</h3>
 				</div>
 
 
@@ -74,11 +67,11 @@
 				<div class="box-body">
 					<table class="table table-bordered">
 						<tr>
-							<th style="width: 10px">BNO</th>
+							<th >BNO</th>
 							<th>TITLE</th>
 							<th>WRITER</th>
-							<th style="width: 40px">date</th>
-							<th style="width: 40px">처리상태</th>
+							<th >date</th>
+							<th >처리상태</th>
 						</tr>
 
 						<c:forEach items="${list}" var="Complaint">
@@ -88,7 +81,9 @@
 								<td><a
 									href='/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&cp_complaintNo=${Complaint.cp_complaintNo}'>
 										${Complaint.cp_title} </a>
-										<strong>[${Complaint.cp_content }]</strong>
+										<c:if test="${Complaint.cp_ref !=0 }">
+										<strong>[${Complaint.cp_ref }]</strong>
+										</c:if>
 										</td>
 								<td>${Complaint.m_memberNo}</td>
 								<td><span class="badge bg-red">${Complaint.cp_date }</span></td>

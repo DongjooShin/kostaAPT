@@ -8,28 +8,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../../../resources/css/gidae/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="../../../resources/css/gidae/styles.css" rel="stylesheet" media="screen">
+ 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-            <script src="../../../resources/js/gidae/gidae/morris/morris-data.js"></script>
-            <script src="../../../resources/js/gidae/morris/raphael.min.js"></script>
-    <script src="../../../resources/js/gidae/morris/morris.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="../../../resources/js/gidae/gidae/morris/morris-data.js"></script>
+<script src="../../../resources/js/gidae/morris/raphael.min.js"></script>
+<script src="../../../resources/js/gidae/morris/morris.min.js"></script>
 	    <!-- Bootstrap Core CSS -->
-    <link href="../../../resources/css/gidae/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../../../resources/css/gidae/sb-admin.css" rel="stylesheet">
+    <link href="../../../resources/css/gidae/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../../../resources/css/gidae/styles.css" rel="stylesheet" media="screen">
+    <link href="../../../resources/css/gidae/bootstrap.min.css" rel="stylesheet">
+    
+    
 <title>Insert title here</title>
 <script type="text/javascript">
 	function next() {
 		window.location.href = "/list";
 	}
 </script>
+<style type="text/css">
+.panel-red {
+    border-color: #d9534f;
+}
 
+.panel-red .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+</style>
 
 </head>
 <body>
+
+
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="panel panel-red">
@@ -237,7 +252,6 @@
 	<!-- Bootstrap Core JavaScript -->
 
 	<!-- Morris Charts JavaScript -->
-
 
 </body>
 </html>

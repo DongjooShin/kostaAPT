@@ -14,11 +14,16 @@
 <body>
 <div></div>
 <div>
-<form action="" method="post">
-	<input type="hidden"" name="cp_complaintNo" >
-	<input type="text" name="cp_title"  width="30px"></input>
-	<textarea name="cp_content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea> 
-		<input type="button" onclick="submitContents(this);" value="저장" />
+<form action="/groupNotice/modify?g_groupNoticeNo=${gn.g_groupNoticeNo }" method="post">
+	
+	제목 : <input type="text" name="g_title" value="${gn.g_title }" style="width: 700px; margin-bottom: 10px;"></input>
+	<textarea name="g_content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;">${gn.g_content }</textarea> 
+	<!-- <input type="hidden" name="apt_APTGNo" value="" />
+	<input type="hidden" name="m_memberNo" value="" /> -->
+	<!-- <input type="file" name="g_fileName"></input> -->
+	<input type="button" onclick="submitContents(this);" value="저장" />
+	<button type="button" onclick="goList()" style="margin-left: 5px;">목록</button>	
+
 </form>
 </div>
 

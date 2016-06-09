@@ -49,8 +49,7 @@ public class MypageController {
 					break;
 				}
 	    		model.addAttribute("complaint",service.mypageComplaint());
-	    		System.out.println(service.mypageComplaint().toString());
-	    		return "mypage/mypageMain";
+	    		return "mypage/MypageMain";
 	    	}
 	    }
 	    	return "redirect:/";
