@@ -32,7 +32,6 @@ public class Candidate implements Serializable {
 		this.m_memberNo = m_memberNo;
 		this.apt_APTGNo = apt_APTGNo;
 		this.cd_imageName = cd_imageName;
-		this.cd_voteNum=0;
 	}
 	public String getCd_imageName() {
 		return cd_imageName;

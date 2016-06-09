@@ -21,8 +21,8 @@ public class Member implements Serializable {
 	private String m_homeTel;
 	private String m_tel;
 
-	private int v_flag; // case:manager
-	private int v2_flag;
+	private int v_flag; 	// case: group president
+	private int v2_flag;	//	case: building president
 	private int m_buildingNo;
 	private int m_roomNo;
 	private int m_age;

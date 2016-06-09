@@ -377,7 +377,8 @@
 					$('#calu').removeClass();
 					$('#feee').val(cal);
 					}else{
-						alert('관리비를 잘못입력했ㅅ븐디ㅏ')
+						alert('관리비를 잘못입력했습니다 전달보다 많아야 지금쓴 사용량을 계산 가능해요')
+						alert('전달에'+passfee+"만큼 사용하셨어요")
 					}
 				});
 				

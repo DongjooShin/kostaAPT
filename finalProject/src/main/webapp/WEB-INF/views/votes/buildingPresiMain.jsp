@@ -1,45 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
+    
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+    
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content= "IE=edge">      <!-- 구형 익스플로러를 위해 써주는 부분 -->
-<meta name="viewport" content= "width=devsice-width, initial-scale=1" >    <!-- 이부분이 바로 반응형 웹!! 디바이스의 가로크기에 맞춰 컨텐트의 가로를 맞춘다. -->
-<title>Group President Vote</title>
+<meta name="viewport" content= "width=device-width, initial-scale=1" >    <!-- 이부분이 바로 반응형 웹!! 디바이스의 가로크기에 맞춰 컨텐트의 가로를 맞춘다. -->
+
 <link rel="stylesheet" href="/resources/voteCss/vote.css"> 
 <link rel='stylesheet' id='spacious-genericons-css'
 	href='/resources/bootstrap/bootstrap.min.css' type='text/css' media='all' />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>	
+
+<title>Building President Main</title>
 </head>
 <body>
 <%-- -----------------Header include----------------- --%>	
 	<div class="header">
 		 <jsp:include page="head.jsp"></jsp:include> 
 	</div>	
-
-<%--
-
-	//about v_flag
-	//case:manager
-	//1: there are no election. candidate regist button here
-	//2: manager is ongoing to put candidate. if manager changed that all president's grade, then v_flag will changed 2
-	//3: manager finished putting candidate and start election already. election is ongoing 
-	//4: election is end. result is noticing. if manager click the finish noticing, v_flag will change 1	
-	
-	//case:resident
-	//1: there are no election. Two president's information here
-	//2: election is start. And resident is not vote yet.
-	//3: election is ongoing. And resident is already votes. resident can see real time result
-	//4: election is end. Result is noticing. if result noticing is finished, v_flag will change 1
-		
- --%>
-
 <%-- ------------------------------Body------------------------------------------- --%>
 	<div id= "page">
 		<div class="col-md-3">
@@ -50,17 +34,17 @@
 			<%-- ****************************CASE : MANAGER************************ --%>
 				<c:when test="${m.getM_grade() == 2 }">
 					<c:choose>
-					<%-- ......FLAG 1 : NO ELECTION. THERE IS GROUP PRESI....... --%>
-						<c:when test="${m.getV_flag() == 1 }">
-							<form action="/voter/groupPresiRegist">
+						<%-- ......FLAG 1 : NO ELECTION. THERE IS GROUP PRESI....... --%>
+						<c:when test="${m.getV2_flag() == 1 }">
+							<form action="/voter/buildingPresiRegist">
 								<input type="submit" value="후보자 등록" id="candiRegiButton" class="btn btn-primary btn-lg" >
 							</form>
 						</c:when>
-					<%-- ......FLAG 2 : THIS CASE PROCESS IN CONTROLLER....... --%>					
-
-					<%-- ......FLAG 3 : ELECTION IS PROCESSING...... --%>	
-						<c:when test="${m.getV_flag() == 3 }">
-							<br><br><br>
+						<%-- ......FLAG 2 : THIS CASE PROCESS IN CONTROLLER....... --%>					
+						
+						<%-- ......FLAG 3 : ELECTION IS PROCESSING...... --%>	
+						<c:when test="${m.getV2_flag() == 3 }">
+						<%-- 	<br><br><br>
 							<h3>선거 진행 현황</h3><br>
 							<form action="/voter/closeVote" method="get">
 								<div class="progress">
@@ -72,11 +56,11 @@
 								<h4>현재 총 실 가구수 <b>${groupNum }</b> 가구 중  <b>${voterNum }</b> 가구의 투표로 ${voterate }% 의 투표가 이루어졌습니다.</h4>
 								<div class="col-md-5"></div>
 								<div class="col-md-2" style="padding-left:0px;"><input type="submit" value="선거종료"></div>
-							</form>
+							</form> --%>
 						</c:when>
-					<%-- ......FLAG 4 : RESULT IS NOTICING NOW...... --%>	
-						<c:when test="${m.getV_flag() == 4 }">
-							<br>
+						<%-- ......FLAG 4 : RESULT IS NOTICING NOW...... --%>	
+						<c:when test="${m.getV2_flag() == 4 }">
+				<%-- 			<br>
 							<h3><img alt="" src="/resources/images/vote/fireworks.png">선거종료<img alt="" src="/resources/images/vote/fireworks.png"></h3>
 							<br><br><h3>선거결과</h3><br><br>
 							<div class="hGraph">
@@ -107,22 +91,22 @@
 								<form action="/voter/returnFirst">
 									<br><input type="button" value="결과게시종료"style="margin-top:20px;margin-left:50px;">
 								</form>
-							</div>
-										
+							</div>	 --%>
 						</c:when>
+				
 					</c:choose>
 				</c:when>
 			<%-- **************END OF MANAGER CASE*************** --%>	
 			
 			<%-- ***********************CASE : RESIDENT************************** --%>	
 				<c:otherwise>
-					
-					<c:choose>
+					<c:choose>		
 						<%-- ..........FLAG 1 : NO ELECTION.......... --%>
-						<c:when test="${m.getV_flag() == 1 }">
+						<c:when test="${m.getV2_flag() == 1 }">
 							
-							<br><br><h3>우리 단지의 입주자 대표</h3><br><br>
-							<c:if test="${gpm != null }">
+							<br><br><h3>우리 동의 동대표</h3><br><br>
+							<%-- 
+							<c:if test="${bpm != null }">
 								<table class="nowPresi">
 									<tr><td colspan="2">${gpm.getM_name() }</td></tr>
 									<tr><td colspan="2">${gpm.getM_memberNo() }</td></tr>
@@ -131,10 +115,13 @@
 									<tr><td colspan="2">${gpm.getM_email() }</td></tr>
 								</table>
 							</c:if>
+							 --%>
 						</c:when>
+						
 						<%-- .........FLAG 2 : ELECTION IS ONGOING & VOTE X........ --%>
-						<c:when test="${m.getV_flag() == 2}">
-							<br><h3>입주자대표 선거가 진행중입니다.</h3><br><br>
+						<c:when test="${m.getV2_flag() == 2}">
+							<%-- 
+							<br><h3>동대표 선거가 진행중입니다.</h3><br><br>
 							<h4>여러분의 소중한 한 표가 우리 아파트의 발전을 만들어 나갑니다.</h4><br>
 							<form action="/voter/voteSubmitOk" method="post">
 								<div class="container">
@@ -159,10 +146,10 @@
 								<div class="col-md-1"><input type="submit" value="제출"></div>
 								<br><Br>
 							</form>
-								
+							 --%>	
 						</c:when>				
 						<%-- .........FLAG 3 : ELECTION IS ONGOING & VOTE O........ --%>
-						<c:when test="${m.getV_flag() == 3}">
+						<c:when test="${m.getV2_flag() == 3}">
 							<br><br>
 							<c:if test="${msg != null }">
 								<span id="msg">${msg }</span>
@@ -175,8 +162,8 @@
 							</div>
 						</c:when>
 						<%-- .........FLAG 4 : VOTE RESULT IS NOTICING........ --%>
-						<c:when test="${m.getV_flag() == 4}">
-							<br>
+						<c:when test="${m.getV2_flag() == 4}">
+							<%-- <br>
 							<h3><img alt="" src="/resources/images/vote/fireworks.png">선거종료<img alt="" src="/resources/images/vote/fireworks.png"></h3>
 							<br><br><h3>선거결과</h3><br><br>
 							<div class="hGraph">
@@ -201,23 +188,21 @@
 							<h4 style="margin-top:30;">총 실 가구수 <b>${groupNum }</b><br></h4>
 							<h4 style="margin-top:5;">투표가구수 <b>${voterNum }</b><br></h4>
 							<h4 style="margin-top:5;">투표율 <b>${voterate }%</b><br></h4>
-				
+			 --%>	
 						</c:when>
+						
+			
+			
+			
 					</c:choose>
-				</c:otherwise>
-			<%-- ***********END OF RESIDENT CASE***************** --%>	
+				</c:otherwise>	
+			<%-- ***********END OF RESIDENT CASE***************** --%>
 			</c:choose>
 		</div>
-	</div>
-
-
+	</div>		
 <%-- ----------------------Footer include----------------- --%>
 	<div class = "footer">
 	
 	</div>
-
-
-
-
-
 </body>
+</html>

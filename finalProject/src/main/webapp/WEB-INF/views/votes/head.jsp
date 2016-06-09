@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+f<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,7 +19,7 @@
 	type='text/css' rel="stylesheet" />
 <script type='text/javascript' src='/resources/dist/js/main1.js'></script>
 <script type='text/javascript' src='/resources/dist/js/main2.js'></script>
-<script type='text/javascript' src='/resources/dist/js/main3.js'></script>
+
 <link rel='stylesheet' id='spacious-genericons-css'
 	href='/resources/dist/css/headerCss.css' type='text/css' media='all' />
 
@@ -131,20 +131,20 @@
 
 								<li id="menu-item-254"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-254"><a
-									href="/siteNotice/faq">고객센터</a>
+									href="http://demo.themegrill.com/spacious/shop/">고객센터</a>
 									<ul class="sub-menu">
 										<li id="menu-item-106"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="/siteNotice/faq">FAQ</a></li>
+											href="main.jsp">FAQ</a></li>
 										<li id="menu-item-107"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
-											href="/siteNotice/">1:1문의</a></li>
+											href="main.jsp">1:1문의</a></li>
 										<li id="menu-item-108"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
-											href="/siteNotice/siteNoticeAllList">공지사항</a></li>
+											href="main.jsp">공지사항</a></li>
 										<li id="menu-item-109"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
-											href="/siteNotice/">가입문의</a></li>
+											href="main.jsp">가입문의</a></li>
 									</ul></li>
 								<li id="menu-item-105"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-105"><a
@@ -152,7 +152,7 @@
 									<ul class="sub-menu">
 										<li id="menu-item-110"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="/aptGroup/Main">아파트그룹</a></li>
+											href="main.jsp?body=APTGroupMain.jsp">아파트그룹</a></li>
 										<li id="menu-item-111"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
 											href="http://demo.themegrill.com/spacious/layout/right-sidebar/">개인정보관리</a></li>
