@@ -10,17 +10,23 @@
 
  <insert id="SandMessage" parameterType="kosta.apt.domain.Message.Message">
      insert into Message(
-    	MG_CONTENT,MG_MESSAGENO,mg_date,m_memberNo,mg_state,mg_from,mg_to
+    	MG_CONTENT,MG_MESSAGENO,mg_date,m_memberNo,mg_state,mg_from,mg_to,mg_title
     
       )
       values(
-     	 #{mg_content},#{mg_messageNo},SYSDATE,#{mg_from},#{mg_state},#{mg_from},#{mg_to}
+     	 #{mg_content},#{mg_messageNo},SYSDATE,#{mg_from},#{mg_state},#{mg_from},#{mg_to},#{mg_title}
 
       )
       
       
     
    </insert>
+   
+   <!-- 디테일메세지 -->
+   <select id="detailmsg" resultType="kosta.apt.domain.Message.Message" parameterType="int">
+   select * from message where mg_messageNo = #{msgno}
+   
+   </select>
    
    <select id="countMsg" resultType="Integer">
    select max(mg_messageNo) from message
@@ -63,7 +69,7 @@
 	<select id="readlistMsg" resultType="kosta.apt.domain.Message.Message">
 	 <![CDATA[
 	 select 
-	   mg_messageNo, mg_from, mg_to, mg_content, mg_date, mg_state, m_memberNo
+	   mg_messageNo, mg_from, mg_to, mg_content, mg_date, mg_state, m_memberNo, mg_title
 	 from 
 	   Message
 	 where mg_messageNo > 0 
@@ -74,13 +80,30 @@
     <select id="sendMessageList" resultType="kosta.apt.domain.Message.Message">
 	 <![CDATA[
 	 select 
-	   mg_messageNo, mg_from, mg_to, mg_content, mg_date, mg_state, m_memberNo
+	   mg_messageNo, mg_from, mg_to, mg_content, mg_date, mg_state, m_memberNo, mg_title
 	 from 
 	   Message
 	 where mg_messageNo > 0 
 	 order by mg_messageNo desc, mg_date desc
 	 ]]>
    </select>
+   
+   
+   
+   <!-- 메세지 삭제하기 -->
+   <delete id="delectMsg" parameterType="int">
+   
+   delete from message where mg_messageNo = #{msgNo}
+   
+   </delete>
+   
+   <!-- 디테일시 확인유무변경  -->
+   <update id="updateState" parameterType="int">
+   
+   update message set mg_state ='읽음' where mg_messageNo =#{msgno}
+   
+   </update>
+   
       
     <insert id="insertMember" parameterType="kosta.apt.domain.member.Member">
 
@@ -92,6 +115,10 @@
       )
       
    </insert> 
+   
+   
+
+   
 <!--  	<select id="aptno" resultType="Integer">
  	select APT_APTGNO
  	from member

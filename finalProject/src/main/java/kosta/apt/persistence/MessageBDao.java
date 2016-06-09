@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import kosta.apt.domain.Message.Message;
 import kosta.apt.domain.Message.MessageCriteria;
 import kosta.apt.domain.Paging.Criteria;
@@ -86,6 +87,30 @@ public class MessageBDao {
 		
 		pagenum = sqlsession.getMapper(MessageMapper.class).sendPage(cri);
 		return pagenum;
+	}
+
+
+	public Message detailmsg(int msgno) {
+		Message message = null;
+		
+		message = sqlsession.getMapper(MessageMapper.class).detailmsg(msgno);
+		
+		return message;
+		
+	}
+
+
+	public void delectMsg(int msgNo) {
+		
+		sqlsession.getMapper(MessageMapper.class).delectMsg(msgNo);
+		
+	}
+
+
+	public void updateState(int msgno) {
+		
+		sqlsession.getMapper(MessageMapper.class).updateState(msgno);
+		
 	}
 	
 	
