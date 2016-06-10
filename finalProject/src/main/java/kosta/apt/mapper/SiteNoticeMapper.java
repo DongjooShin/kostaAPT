@@ -4,6 +4,7 @@ import java.util.List;
    
 import org.apache.ibatis.session.RowBounds;
 
+import kosta.apt.domain.SiteNotice.QnA;
 import kosta.apt.domain.SiteNotice.SNSearchCriteria;
 import kosta.apt.domain.SiteNotice.SiteNotice;
 
@@ -18,4 +19,7 @@ public interface SiteNoticeMapper {
 	public void snHitCount(int sn_SiteNoticeNo);
 	public void snModify(SiteNotice sn);
 	public void snDelete(int sn_siteNoticeNo);
+	public void inquiryInsert(QnA qna);
+	public Integer maxQnANo();
+	public List<QnA> selectAllQnAList();
 }

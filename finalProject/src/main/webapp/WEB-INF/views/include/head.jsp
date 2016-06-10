@@ -131,20 +131,20 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 								<li id="menu-item-254"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-254"><a
-									href="/siteNotice/faq">고객센터</a>
+									href="/siteNotice/faqMain">고객센터</a>
 									<ul class="sub-menu">
 										<li id="menu-item-106"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="/siteNotice/faq">FAQ</a></li>
+											href="/siteNotice/faqMain">FAQ</a></li>
 										<li id="menu-item-107"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
-											href="/siteNotice/">1:1문의</a></li>
+											href="/siteNotice/inquiryMain">1:1문의</a></li>
 										<li id="menu-item-108"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
 											href="/siteNotice/siteNoticeAllList">공지사항</a></li>
 										<li id="menu-item-109"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
-											href="/siteNotice/">가입문의</a></li>
+											href="/siteNotice/joinInquiry">가입문의</a></li>
 									</ul></li>
 								<li id="menu-item-105"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-105"><a

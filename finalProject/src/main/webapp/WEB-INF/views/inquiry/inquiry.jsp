@@ -28,8 +28,7 @@
 				<c:choose>	
 					<%-- ----------CASE : INQUIRY BY MEMBER---------------- --%>
 					<c:when test="${member.m_grade != 0 }">
-					
-					
+							<jsp:include page="/resources/editor/InqSmartEditor.jsp"></jsp:include>		
 					</c:when>
 					<%-- ----------CASE : ANSWER BY SITE MANAGER--------------- --%>
 					<c:otherwise>

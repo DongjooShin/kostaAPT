@@ -1,6 +1,7 @@
 package kosta.apt.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kosta.apt.domain.SiteNotice.QnA;
 import kosta.apt.domain.SiteNotice.SNPageMaker;
 import kosta.apt.domain.SiteNotice.SNSearchCriteria;
 import kosta.apt.domain.SiteNotice.SiteNotice;
@@ -124,11 +127,69 @@ public class SiteNoticeController {
 		
 	}
 	
-	@RequestMapping("/siteNotice_download")
+	@RequestMapping("siteNotice_download")
 	public ModelAndView fileDown(@RequestParam String filename)throws Exception{
 		File file=new File(uploadDir, filename);//file객체구하기
 		
 		return new ModelAndView("GndownloadView","downloadFile",file);//뷰의이름,가져갈객체 키값,데이터값
+	}
+	
+	
+	
+//------------- Site FAQ ---------------------
+	
+	@RequestMapping("faqMain")
+	public String faqMain(){
+		return "/FAQ/faqMain";
+	}
+	
+//------------- Site Inquiry -------------------	
+	
+
+	@RequestMapping("inquiryMain")
+	public String inquiryMain(HttpSession session,Model model){
+		
+		Member m = (Member)session.getAttribute("member");
+		List<QnA> qnaList = snService.selectAllQnAList();
+		
+		model.addAttribute("qlist", qnaList);
+		model.addAttribute("m_email", m.getM_email());
+		model.addAttribute("msg", "No");
+		
+		return "/inquiry/inquiry";
+	}
+	@RequestMapping(value="inquiryRegist", method=RequestMethod.POST)
+	public String inquiryRegist(QnA qna,Model model){
+		if(snService.maxQnANo() != null)
+		{
+			qna.setQnaNo(snService.maxQnANo()+1);
+		}else{
+			qna.setQnaNo(1);
+		}
+		
+		if(qna.getMultipart() != null){
+			qna.setQ_fileName(qna.getMultipart().getOriginalFilename());
+		}else{
+			qna.setQ_fileName("NULL");
+		}
+		snService.insertInquiry(qna);
+		System.out.println(qna.getQ_name());
+		model.addAttribute("msg", "SUCCESS");
+		return "/inquiry/inquiry";
+	}
+	/*
+	@RequestMapping(value="")
+	public 
+	*/
+	
+	
+
+//--------------- join inquiry --------------------	
+
+	@RequestMapping("joinInquiry")
+	public String joinInquiry(){
+
+		return "/FAQ/joinHere";
 	}
 	
 //    

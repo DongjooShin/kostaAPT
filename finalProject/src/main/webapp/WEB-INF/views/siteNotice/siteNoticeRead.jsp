@@ -99,7 +99,7 @@
 			</div>
 		</div>
 			<form role="form" action="snModify" method="post">
-			<input type='hidden' name='sn_groupNoticeNo' value="${sn.sn_siteNoticeNo}"> 
+			<input type='hidden' name='sn_siteNoticeNo' value="${sn.sn_siteNoticeNo}"> 
 			<input type='hidden' name='page' value="${cri.page}"> 
 			<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
 		</form>
