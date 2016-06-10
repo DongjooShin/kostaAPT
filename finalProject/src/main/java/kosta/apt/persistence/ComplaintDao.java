@@ -125,5 +125,15 @@ public class ComplaintDao {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".replyCount", cp_complaintNo);
 	}
+
+
+	public void addRef(int ref, int cp_complaintNo) {
+		// TODO Auto-generated method stub
+	    Map<String, Integer> paramMap = new HashMap<>();
+
+	    paramMap.put("ref", ref);
+	    paramMap.put("complaintno", cp_complaintNo);
+		session.update(namespace+".addRef", paramMap);
+	}
 	
 }

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 public class Message implements Serializable {
 	private int mg_messageNo; //
+	private String mg_title;
 	private String mg_from;
 	private String mg_to; //
 	private String mg_content;
@@ -13,6 +14,13 @@ public class Message implements Serializable {
 	private String m_memberNo; //
 	
 	
+	
+	public String getMg_title() {
+		return mg_title;
+	}
+	public void setMg_title(String mg_title) {
+		this.mg_title = mg_title;
+	}
 	public int getMg_messageNo() {
 		return mg_messageNo;
 	}

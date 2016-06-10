@@ -118,7 +118,6 @@ $(function() {
     	        labels: ['달별관리비'],
     	        barRatio: 0.4,
     	        xLabelAngle: 35,
-    	        hideHover: 'auto',
     	        resize: true
     	    });
     	

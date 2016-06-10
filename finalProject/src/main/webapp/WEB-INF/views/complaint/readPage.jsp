@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<%@include file="../include/head.jsp"%>
-<%@include file="../mypage/MypageHead.jsp"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- Main content -->
 <div class="col-lg-12">
 <div class="col-lg-1"></div>
-<div class="col-lg-10" style="background-color: white;">
+<div class="col-lg-10" style="background-color:  white;">
 <section class="content" >
 	<div class="row ">
 		<!-- left column -->
@@ -47,7 +45,7 @@
 						<textarea class="form-control" name="cp_content" rows="3"
 							readonly="readonly">${complaint.cp_content}</textarea>
 					</div>
-					<div class="form-group" height="20">
+					<div class="form-group">
 						<label for="exampleInputEmail1">Writer</label> <input type="text"
 							name="m_memberNo" class="form-control" value="${complaint.m_memberNo}"
 							readonly="readonly" height="20">
@@ -84,6 +82,7 @@
 				<li class="time-label" id="repliesDiv"><span class="bg-green">
 					</span></li>
 			</ul>
+			
 
 			<div class='text-center'>
 				<ul id="pagination" class="pagination pagination-sm no-margin ">
@@ -96,14 +95,14 @@
 
 
 
+					 <input  type="hidden" value="${member.m_memberNo }"id="newReplyWriter">
 			<div class="box box-success">
 				<div class="box-header">
 					<h3 class="box-title">새 댓글</h3>
 				</div>
 				<div class="box-body">
-					<label for="exampleInputEmail1"></label> <input
-						class="form-control" type="hidden" value="${member.m_memberNo }"
-						id="newReplyWriter"> <label for="exampleInputEmail1">내용
+					<label for="exampleInputEmail1"></label>
+						 <label for="exampleInputEmail1">내용
 						</label> <input class="form-control" type="text"
 						placeholder="REPLY TEXT" id="newReplyText">
 
@@ -117,35 +116,14 @@
 
 
 
-
 		</div>
 		<!-- /.col -->
 	</div>
 	<!-- /.row -->
 
-
           
 <!-- Modal -->
-<div id="modifyModal" class="modal modal-primary fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body" data-rno>
-        <p><input type="text" id="replytext" class="form-control"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
-        <button type="button" class="btn btn-danger" id="replyDelBtn" >DELETE</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>      
-	
+
 </section>
 </div>
 </div>
@@ -153,39 +131,92 @@
 
 <script id="template" type="text/x-handlebars-template">
 {{#each .}}
+	<div>
 <li class="replyLi" data-rno={{rno}}>
 <i class="fa fa-comments bg-blue"></i>
  <div class="timeline-item" >
-  <span class="timeline-header">아이디 [{{m_memberno}}]</span>
+  <span class="timeline-header">[{{m_memberno}}]</span>
   <span class="time">
     <i class="fa fa-clock-o"></i>{{ rdate}}
   </span>
-  <div class="timeline-body"><h3 id="text">{{replytext}}<h3> </div>
-    <div class="timeline-footer">
-     <a class="btn btn-primary btn-xs" 
-	    data-toggle="modal" data-target="#modifyModal">수정</a>
-    </div>
-  </div>			
+	<input type="hidden" class="rno" value="{{rno}}">
+  <div class="timeline-body"><h3 id="text">{{replytext}}</h3> </div>
+  <div class="check">
+  </div>
+  </div>
 <hr/>
 </li>
+</div>
 {{/each}}
 </script>
 
 <script>
 
 $(function () {
-/* 	$("#repliesDiv").on("click", function() {
-
-		if ($(".timeline li").size() > 1) {
-			return;
-		} */
-		getPage("/replies/" + cp_complaintNo + "/1");
-		
+	getPage("/replies/" + cp_complaintNo + "/1");
 })
 
-$(document).on("click",".modiBtn",function(){
-	alert($('#text').val)
-	$('#repliesDiv').empty();	
+$(document).on("click",".modiBtn",function(index){
+	var button = '<button  class="btn btn-info creaBtn" >수정</button>';
+ 	var replytext = $(this).parent().parent().find('#text').html();
+	var textarea="<textarea class='text'>"+replytext+"</textarea>"; 
+
+ 	  $(this).parent().parent().find('.timeline-body').empty();
+ 		//$(this).parent().empty();
+ 		//$(this).parent().find('.check').remove();
+ 		//$('.check').empty();
+ 	  // $(this).parent().find('.check').empty();
+ 	  // $(this).parent().parent().find('.check').empty();
+ 	  //$(this).parent().find('.Btn').removeClass();
+ 	  $(this).removeClass('modiBtn');
+ 	  $(this).addClass('creaBtn');
+	  $(this).parent().parent().find('.timeline-body').append(textarea); 
+ 	 	$(this).stopPropagation();
+	  
+
+})
+$(document).on("click",".remoBtn",function(index){
+	var rno = $(this).parent().parent().find('.rno').val();
+	
+	  $.ajax({
+			type:'delete',
+			url:'/replies/'+rno,
+			headers: { 
+			      "Content-Type": "application/json",
+			      "X-HTTP-Method-Override": "DELETE" },
+			data:JSON.stringify({cp_complaintNo:cp_complaintNo}), 
+			dataType:'text', 
+			success:function(result){
+				console.log("result: " + result);
+				if(result == 'SUCCESS'){
+					alert("삭제 되었습니다.");
+					getPage("/replies/"+cp_complaintNo+"/"+replyPage );
+				}
+		}});
+	  
+
+})
+$(document).on("click",".creaBtn",function(index){
+	alert($(this).parent().parent().find('.text').val());
+ 	var rno = $(this).parent().parent().find('.rno').val();
+		  var replytext = $(this).parent().parent().find('.text').val();
+	  $.ajax({
+			type:'put',
+			url:'/replies/'+rno,
+			headers: { 
+			      "Content-Type": "application/json",
+			      "X-HTTP-Method-Override": "PUT" },
+			data:JSON.stringify({replytext:replytext}), 
+			dataType:'text', 
+			success:function(result){
+				console.log("result: " + result);
+				if(result == 'SUCCESS'){
+					alert("수정 되었습니다.");
+					$('#repliesDiv').empty();
+					getPage("/replies/"+cp_complaintNo+"/"+replyPage );
+				}
+		}}); 
+
 })
 	Handlebars.registerHelper("prettifyDate", function(timeValue) {
 		var dateObj = new Date(timeValue);
@@ -206,18 +237,22 @@ $(document).on("click",".modiBtn",function(){
 	}
 
 	var cp_complaintNo = ${complaint.cp_complaintNo};
-	
 	var replyPage = 1;
 
 	function getPage(pageInfo) {
-
+		var id = "["+"<c:out value='${member.m_memberNo}' />"+"]";
 		$.getJSON(pageInfo, function(data) {
 			printData(data.list, $("#repliesDiv"), $('#template'));
 			printPaging(data.pageMaker, $(".pagination"));
-
-			$("#modifyModal").modal('hide');
+			$('.timeline-header').each(function () {
+				if($(this).html() == id ){
+					var button = '<button  class="btn btn-info modiBtn" >수정</button>';
+					   button += '<button  class="btn btn-info remoBtn" >삭제</button>'
+					$(this).parent().find('.check').append(button);
+				}
+			})
 			$("#replycntSmall").html("["+data.pageMaker.totalCount+"]");
-
+			
 		});
 	}
 
@@ -258,11 +293,9 @@ $(document).on("click",".modiBtn",function(){
 	
 
 	$("#replyAddBtn").on("click",function(){
-		 var replyerObj = $("#newReplyWriter");
 		 var replytextObj = $("#newReplyText");
-		 var m_memberno = replyerObj.val();
+		 var m_memberno = "<c:out value='${member.m_memberNo}' />";
 		 var replytext = replytextObj.val();
-		
 		  
 		  $.ajax({
 				type:'post',
@@ -318,26 +351,6 @@ $(document).on("click",".modiBtn",function(){
 			}});
 	});
 
-	$("#replyDelBtn").on("click",function(){
-		  
-		  var rno = $(".modal-title").html();
-		  var replytext = $("#replytext").val();
-		  
-		  $.ajax({
-				type:'delete',
-				url:'/replies/'+rno,
-				headers: { 
-				      "Content-Type": "application/json",
-				      "X-HTTP-Method-Override": "DELETE" },
-				dataType:'text', 
-				success:function(result){
-					console.log("result: " + result);
-					if(result == 'SUCCESS'){
-						alert("삭제 되었습니다.");
-						getPage("/replies/"+cp_complaintNo+"/"+replyPage );
-					}
-			}});
-	});
 	
 </script>
 

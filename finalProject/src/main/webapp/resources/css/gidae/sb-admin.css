@@ -6,6 +6,7 @@
 
 /* Global Styles */
 
+
 body {
   
     background-color: white;
@@ -190,15 +191,7 @@ ul.alert-dropdown {
     color: #3d8b3d;
 }
 
-.panel-red {
-    border-color: #d9534f;
-}
 
-.panel-red .panel-heading {
-    border-color: #d9534f;
-    color: #fff;
-    background-color: #d9534f;
-}
 
 .panel-red a {
     color: #d9534f;

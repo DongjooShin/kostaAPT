@@ -83,4 +83,9 @@ public class ComplaintService {
 		return dao.replyCount(cp_complaintNo);
 	}
 
+	public void addRef(int ref, int cp_complaintNo) {
+		// TODO Auto-generated method stub
+		dao.addRef(ref,cp_complaintNo);
+	}
+
 }

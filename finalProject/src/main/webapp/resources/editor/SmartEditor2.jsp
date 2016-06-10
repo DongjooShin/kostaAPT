@@ -14,9 +14,8 @@
 <body>
 <div></div>
 <div>
-<form action="/main/jsp/main.jsp?body=mypage.jsp?body2=complaintOK.jsp" method="post">
+<form action="" method="post">
 	<input type="hidden"" name="cp_complaintNo" >
-	<input type="text"/>
 	<input type="text" name="cp_title"  width="30px"></input>
 	<textarea name="cp_content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea> 
 		<input type="button" onclick="submitContents(this);" value="저장" />
