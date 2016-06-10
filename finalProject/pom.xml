@@ -214,16 +214,22 @@
 		</dependency>
 
 
-<!-- 민경운라이브러리 -->
+		<!-- 민경운라이브러리 -->
 		<dependency>
-         <groupId>com.servlets</groupId>
-         <artifactId>cos</artifactId>
-         <version>05Nov2002</version>
-      </dependency>
-      
-      
-      
-      
+			<groupId>com.servlets</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>
+
+		<!-- Validation -->
+
+		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>
