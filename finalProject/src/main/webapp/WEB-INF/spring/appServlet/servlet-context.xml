@@ -32,10 +32,10 @@
 <beans:bean id= "loginInterceptor" class="kosta.apt.interceptor.LoginInterceptor"/>
 <beans:bean id= "syndFeed" class="com.sun.syndication.feed.synd.SyndFeedImpl"/>
 <interceptors>
-	<interceptor>
+<!-- 	<interceptor>
 		<mapping path="/member/test"/>
 		<beans:ref bean="authInterceptor"/>
-	</interceptor>
+	</interceptor> -->
 	<interceptor>
 		<mapping path="/member/*"/>
 		<beans:ref bean="loginInterceptor"/>
@@ -52,6 +52,7 @@
 	</beans:bean>
 
 	
+
 
 	
 </beans:beans>

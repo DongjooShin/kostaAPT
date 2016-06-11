@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kosta.apt.domain.member.Member;
+import kosta.apt.domain.member.RssReader;
+import kosta.apt.domain.member.sampleContent;
 
 /**
  * Handles requests for the application home page.
@@ -22,15 +24,16 @@ import kosta.apt.domain.member.Member;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+			
 	System.out.println("정상 실행됨!!");
-		
-		return "main";
+	return "main";
+
 	}
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)

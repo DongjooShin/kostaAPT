@@ -45,7 +45,7 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<!-- #header-logo-image -->
 						<div id="header-text" class="">
 							<h1 id="site-title">
-								<a href="main" title="Spacious"
+								<a href="/main" title="Spacious"
 									rel="home">Apart Manage</a>
 							</h1>
 							<p id="site-description">Apart Manage</p>
@@ -110,7 +110,7 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 									<ul class="sub-menu">
 										<li id="menu-item-255"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-255"><a
-											href="main.jsp?body=aptNewsMain.jsp">부동산뉴스</a></li>
+											href="/member/aptNews?newsNum=0&page=0">부동산뉴스</a></li>
 										<li id="menu-item-256"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-256"><a
 											href="main.jsp?body=aptNewsMain.jsp">아파트시세</a></li>

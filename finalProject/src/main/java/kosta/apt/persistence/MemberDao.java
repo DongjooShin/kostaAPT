@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kosta.apt.domain.member.AddressCity;
-import kosta.apt.domain.member.AddressState;
+import kosta.apt.domain.member.AptList;
+import kosta.apt.domain.member.AptTransactionPrice;
 import kosta.apt.domain.member.LoginCheck;
 import kosta.apt.domain.member.Member;
 import kosta.apt.mapper.MemberMapper;
@@ -23,9 +24,6 @@ public class MemberDao {
 		this.sqlSession = sqlSession;
 	}
 
-	public List<AddressState> getState() {
-		return sqlSession.getMapper(MemberMapper.class).getState();
-	}
 
 	public List<AddressCity> getCity(int state) {
 		return sqlSession.getMapper(MemberMapper.class).getCity(state);
@@ -35,7 +33,7 @@ public class MemberDao {
 		return sqlSession.getMapper(MemberMapper.class).getStateNum(selectState);
 	}
 
-	public List<String> getAptName(String address) {
+	public List<AptList> getAptName(String address) {
 		return sqlSession.getMapper(MemberMapper.class).getAptName(address);
 	}
 
@@ -50,19 +48,20 @@ public class MemberDao {
 			return -1;
 		}
 	}
+
 	public void insertMember(Member member) {
 		sqlSession.getMapper(MemberMapper.class).insertMember(member);
-		
+
 	}
-	
+
 	public int loginCheck(LoginCheck loginCheck) {
-		
-		return  sqlSession.getMapper(MemberMapper.class).checkMemberPass(loginCheck);
-		
-		
+
+		return sqlSession.getMapper(MemberMapper.class).checkMemberPass(loginCheck);
+
 	}
+
 	public Member getMember(String id) {
-			return sqlSession.getMapper(MemberMapper.class).getMamber(id);
+		return sqlSession.getMapper(MemberMapper.class).getMamber(id);
 	}
 
 	public String getAPTAddress(int apt_APTGNo) {
@@ -71,13 +70,19 @@ public class MemberDao {
 
 	public void updateMember(Member member) {
 		sqlSession.getMapper(MemberMapper.class).updateMember(member);
-		
+
 	}
 
 	public int getAptNum(HashMap<String, String> map) {
-		return  sqlSession.getMapper(MemberMapper.class).getAptNum(map);
+		return sqlSession.getMapper(MemberMapper.class).getAptNum(map);
 	}
-	
+
+	public void updateRealTransactionPrice(AptTransactionPrice aptTransactionPrice) {
+			
+			sqlSession.getMapper(MemberMapper.class).updateRealTransactionPrice(aptTransactionPrice);
+			
+		
+
+	}
 
 }
-

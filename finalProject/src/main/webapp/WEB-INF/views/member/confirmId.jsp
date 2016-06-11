@@ -3,20 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%-- <%
-	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("id");
-
-	AptService aptService = AptService.getInstance();
-	int check = -1;
-	check = aptService.checkMemberIdService(id);
-
-	request.setAttribute("check", check);
-	request.setAttribute("id", id);
-%> --%>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

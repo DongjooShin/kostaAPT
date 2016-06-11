@@ -1,23 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%
-	String check1 = request.getParameter("check");
-	
-	 int check =0;
-	
-	 if(check1 !=null){
-		 check = Integer.parseInt(check1);
-	 }
 
-	if (check == 1) {
-		System.out.println("비밀번호 틀림");
-		check = 10;
-	}
-	
-	
-	request.setAttribute("check2", check); 
-%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-US">
 <head>
@@ -27,7 +11,6 @@
 <title>APT Management Login Page</title>
 
 <!-- CSS -->
-<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
 <link rel="stylesheet" href="/resources/dist/css/dong/form-elements.css">
 <link rel="stylesheet" href="/resources/dist/css/dong/style.css">
 

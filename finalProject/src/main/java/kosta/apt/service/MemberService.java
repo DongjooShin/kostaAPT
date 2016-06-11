@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kosta.apt.domain.member.AddressCity;
-import kosta.apt.domain.member.AddressState;
+import kosta.apt.domain.member.AptList;
+import kosta.apt.domain.member.AptTransactionPrice;
 import kosta.apt.domain.member.LoginCheck;
 import kosta.apt.domain.member.Member;
 import kosta.apt.persistence.MemberDao;
@@ -21,13 +22,8 @@ public class MemberService {
 	public void setDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
-	
 
 
-	
-	public List<AddressState> getStateService(){
-		return memberDao.getState();
-	}
 	public List<AddressCity> getCityService(int state){
 		return memberDao.getCity(state);
 	}
@@ -36,7 +32,7 @@ public class MemberService {
 		return memberDao.getStateNum(selectState);
 	}
 
-	public List<String> getAptNameService(String address) {
+	public List<AptList> getAptNameService(String address) {
 		return memberDao.getAptName(address);
 	}
 
@@ -98,5 +94,13 @@ public class MemberService {
 			map.put("aptname", aptname);
 			
 		   return memberDao.getAptNum(map);
+	}
+
+
+
+
+	public void updateRealTransactionPriceService(AptTransactionPrice aptTransactionPrice) {
+		
+		memberDao.updateRealTransactionPrice(aptTransactionPrice);
 	}
 }
