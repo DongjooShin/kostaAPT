@@ -58,7 +58,7 @@
 	<div class="main">
 		<div>
 			<div id="page" class="hfeed site">
-				<div class="row">
+			<div class="row">
 				<div class="col-lg-2">
 				
 				<div id="secondary">
@@ -106,7 +106,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+					<div class="col-lg-3"></div>
 				<div class="row">
 					<div class="col-lg-2"></div>
 					<div class="col-lg-8">
@@ -333,10 +333,15 @@
 
 
 		</div>
+				</div>
+	
 		</div>
 			<div class="footer"></div>
 			<script type="text/javascript">
 			$(function () {
+				$('select[name=state]').on('mouseup',function(){
+					alert('dd')
+				});
 				
 				$('#excel').on('click',function(){
 					window.open('/getExcel', '엑셀파일');
@@ -347,7 +352,7 @@
 					
 					var option = $('select[name=state]').val();
 					var fee =$('#fee').val();
-					var passfee ="<c:out value='${p. pm_publicElectric}' />" ;
+					var passfee =<c:out value='${p. pm_publicElectric}' /> ;
 					if(fee>passfee){
 						
 					var cal =0;
@@ -377,6 +382,7 @@
 					$('#calu').removeClass();
 					$('#feee').val(cal);
 					}else{
+						alert(fee)
 						alert('관리비를 잘못입력했습니다 전달보다 많아야 지금쓴 사용량을 계산 가능해요')
 						alert('전달에'+passfee+"만큼 사용하셨어요")
 					}

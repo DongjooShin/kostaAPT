@@ -20,7 +20,7 @@
 		<div class="col-lg-12">
 		<div class="col-lg-1"></div>
 		<div class="body col-lg-10">
-			<jsp:include page="MemberMypage.jsp"></jsp:include>
+			<jsp:include page="mypageFirst.jsp"></jsp:include>
 		</div>
 		</div>
 

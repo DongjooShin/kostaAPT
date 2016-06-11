@@ -49,7 +49,7 @@ public class MypageController {
 					break;
 				}
 	    		model.addAttribute("complaint",service.mypageComplaint());
-	    		return "mypage/MypageMain";
+	    		return "mypage/mypageMain";
 	    	}
 	    }
 	    	return "redirect:/";

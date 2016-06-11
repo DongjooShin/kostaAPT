@@ -132,7 +132,6 @@ public class ComplaintController {
 		public ResponseEntity<String> delete
 		(@PathVariable("rno") int rno ,@RequestBody Reply reply){
 			ResponseEntity<String> entity = null;
-			System.out.println(reply.getCp_complaintNo()+"게시글~~~~~~~ 번호~~~~~");
 			int ref =-1;
 			try {
 				service.removeReply(rno);

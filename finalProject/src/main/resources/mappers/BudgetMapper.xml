@@ -7,10 +7,7 @@
 <mapper namespace="kosta.apt.mapper.BudgetMapper"> <!-- namespace를 꼭 맞게 써주어야함 -->
 	<cache />
 	<insert id="budgetInsert" parameterType="Budget">
-		insert into budget(
-			b_budgetNo, b_date, b_clean, b_general, b_maintain, b_liftMaintain,	b_security,
-			b_foodWaste, b_fireInsurance, b_commission, b_meeting, b_publicElectric, b_liftElectric,
-			b_TVFee, b_disinfection, b_appropriation, b_fileName, apt_APTGNo) 
+		insert into budget
 		values(
 			budget_seq.NEXTVAL, #{b_date},#{b_clean},#{b_general},#{b_maintain},#{b_liftMaintain},#{b_security},
 			#{b_foodWaste},#{b_fireInsurance},#{b_commission},#{b_meeting},#{b_publicElectric},#{b_liftElectric},

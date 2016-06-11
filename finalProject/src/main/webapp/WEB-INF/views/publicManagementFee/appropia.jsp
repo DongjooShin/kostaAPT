@@ -1,31 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-<script type='text/javascript' src='/resources/dist/js/main3.js'></script>
-<link rel='stylesheet'
-	href='/resources/dist/css/kyungtae/AdminLTE.min.css' type='text/css' />
-<link rel='stylesheet'
-	href='/resources/dist/css/kyungtae/skins/_all-skins.min.css'
-	type='text/css' />
-<style type="text/css">
-.content{
-	padding-top:50px;
-	padding-right:50px;
-	padding-left:50px;
-}
-</style>
 </head>
-
 <body>
 	<div class="header">
 		<jsp:include page="../include/head.jsp"></jsp:include>
@@ -48,92 +28,6 @@
 									</button>
 								</div>
 							</div>
-							<div class="box-body">
-								<div class="chart">
-									<canvas id="waterChart" style="height: 250px"></canvas>
-								</div>
-							</div>
-							<!-- /.box-body -->
-						</div>
-						<!-- /.box -->
-
-						<div class="box box-primary">
-							<div class="box-header with-border">
-								<h3 class="box-title">가스 요금    [단위:원]</h3>
-								<div class="box-tools pull-right">
-									<button class="btn btn-box-tool" data-widget="collapse">
-										<i class="fa fa-minus"></i>
-									</button>
-									<button class="btn btn-box-tool" data-widget="remove">
-										<i class="fa fa-times"></i>
-									</button>
-								</div>
-							</div>
-							<div class="box-body">
-								<div class="chart">
-									<canvas id="gasChart" style="height: 250px"></canvas>
-								</div>
-							</div>
-							<!-- /.box-body -->
-						</div>
-						
-						
-						<!-- /.box -->
-
-					</div>
-					<!-- /.col (LEFT) -->
-					<div class="col-md-6">
-						<!-- LINE CHART -->
-						<div class="box box-info">
-							<div class="box-header with-border">
-								<h3 class="box-title">전기 요금    [단위:원]</h3>
-								<div class="box-tools pull-right">
-									<button class="btn btn-box-tool" data-widget="collapse">
-										<i class="fa fa-minus"></i>
-									</button>
-									<button class="btn btn-box-tool" data-widget="remove">
-										<i class="fa fa-times"></i>
-									</button>
-								</div>
-							</div>
-							<div class="box-body">
-								<div class="chart">
-									<canvas id="electricChart" style="height: 250px"></canvas>
-								</div>
-							</div>
-							<!-- /.box-body -->
-						</div>
-						<!-- /.box -->
-						<div class="box box-danger">
-							<div class="box-header with-border">
-								<h3 class="box-title">관리비 종합    [단위:원]</h3>
-								<div class="box-tools pull-right">
-									<button class="btn btn-box-tool" data-widget="collapse">
-										<i class="fa fa-minus"></i>
-									</button>
-									<button class="btn btn-box-tool" data-widget="remove">
-										<i class="fa fa-times"></i>
-									</button>
-								</div>
-							</div>
-							<div class="box-body">
-								<canvas id="pieChart" style="height: 250px"></canvas>
-							</div>
-							<!-- /.box-body -->
-						</div>
-						<!-- BAR CHART -->
-					</div>
-					
-					<!-- /.col (RIGHT) -->
-				</div>
-				<!-- /.row -->
-
-			</section>
-			<!-- /.content -->
-
-	</div>
-	<!-- ./wrapper -->
-
 
 	<script type="text/javascript"
 		src="/resources/js/kyungtae/jQuery-2.1.4.min.js"></script>
