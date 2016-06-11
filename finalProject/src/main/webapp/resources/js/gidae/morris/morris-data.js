@@ -1,66 +1,86 @@
 // Morris.js Charts sample data for SB Admin template
 
 $(function() {
-		
-	$.ajax({
-		url: '/publicdata',
-		type: 'post',
-		dataType: 'json',
-		success: successHandler,
-		error:function(){
-			alert('dd2222222222222');
-			alert('데이터가없음');
-		    Morris.Line({
-		        // ID of the element in which to draw the chart.
-		        element: 'morris-line-chart',
-		        // Chart data records -- each entry in this array corresponds to a point on
-		        // the chart.
-		        data: [{
-		            d: '2012',
-		            visits: 802
-		        }, {
-		            d: '2013',
-		            visits: 783
-		        }, {
-		            d: '2014',
-		            visits: 820
-		        }, {
-		            d: '2015',
-		            visits: 839
-		        } ],
-		        // The name of the data record attribute that contains x-visitss.
-		        xkey: 'd',
-		        // A list of names of data record attributes that contain y-visitss.
-		        ykeys: ['visits'],
-		        // Labels for the ykeys -- will be displayed when you hover over the
-		        // chart.
-		        labels: ['Visits'],
-		        // Disables line smoothing
-		        smooth: false,
-		        resize: true
-		    });
+		"use strict";
+
+
+			$('#excel').on('click', function() {
+				window.open('/getExcel', '엑셀파일');
+
+			});
+			
+			
+			$('#excel2').on('click', function() {
+				alert('dd')
+				window.open('/getMonthExcel', '엑셀파일');
+				
+			});
+
 	
-		}
-	});
-	function successHandler(data) {
-		alert("dd");
-		   Morris.Line({
-		        // ID of the element in which to draw the chart.
-		        element: 'morris-line-chart',
-		        // Chart data records -- each entry in this array corresponds to a point on
-		        // the chart.
-		        data: data,
-		        // The name of the data record attribute that contains x-visitss.
-		        xkey: "d",
-		        // A list of names of data record attributes that contain y-visitss.
-		        ykeys: ['관리비'],
-		        // Labels for the ykeys -- will be displayed when you hover over the
-		        // chart.
-		        labels: ['관리비'],
-		        // Disables line smoothing
-		        smooth: false,
-		        resize: true
-		    });
+
+		
+		$.ajax({
+			url: '/countryGraph',
+			type: 'post',
+			dataType: 'json',
+			success: successHandler2});
+		$.ajax({
+			url: '/CityGraph',
+			type: 'post',
+			dataType: 'json',
+			success: successHandler3});
+		$.ajax({
+			url: '/monthManageFee',
+			type: 'post',
+			dataType: 'json',
+			success: successHandler4});
+		// AREA CHART
+		
+
+
+
+	
+	
+	function successHandler2(data) {
+
+			var area = new Morris.Area({
+				element : 'revenue-chart',
+				resize : true,
+				data : data,
+				xkey : 'd',
+				ykeys : [ 'manageFee', 'manageFee2' ],
+				labels : [ '전국평균관리비', '나의평균관리비' ],
+				lineColors : [ '#a0d0e0', '#3c8dbc' ],
+				hideHover : 'auto'
+			});
+	};
+	function successHandler3(data) {
+		
+		//BAR CHART
+		var bar = new Morris.Bar({
+			element : 'bar-chart',
+			resize : true,
+			data : data,
+			barColors : [ '#00a65a', '#f56954' ],
+			xkey : 'd',
+			ykeys : [ 'manageFee', 'manageFee2' ],
+			labels : [ '도시별평균관리비', '나의평균관리비' ],
+			lineColors : [ '#a0d0e0', '#3c8dbc' ],
+			hideHover : 'auto'
+		});
+	};
+	function successHandler4(data) {
+		
+        var line = new Morris.Line({
+            element: 'line-chart',
+            resize: true,
+            data: data,
+            xkey: 'd',
+            ykeys: ['manageFee'],
+            labels: ['년도별평균관리비'],
+            lineColors: ['#3c8dbc'],
+            hideHover: 'auto'
+          });
 	};
 
 

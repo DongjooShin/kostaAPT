@@ -49,9 +49,14 @@ public class JunitTest {
 		List<ManagementFee> list=	dao.DataAppropriation(1);
 		System.out.println(list.toString());
 	}*/
-	@Test
+/*	@Test
 	public void test(){
 		List<PublicManagementFee> list=	dao.getCityGraph(1);
+		System.out.println(list.toString());
+	}*/
+	@Test
+	public void test(){
+		List<PublicManagementFee> list=	dao.appropriation(1);
 		System.out.println(list.toString());
 	}
 

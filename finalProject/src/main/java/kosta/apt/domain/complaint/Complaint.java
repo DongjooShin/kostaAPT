@@ -11,8 +11,15 @@ public class Complaint implements Serializable {
 	private int cp_ref;//1
 	private String cp_date;
 	private String m_memberNo;
+	private int cp_flag;
 	private int apt_APTGNo;//1
 	
+	public int getCp_flag() {
+		return cp_flag;
+	}
+	public void setCp_flag(int cp_flag) {
+		this.cp_flag = cp_flag;
+	}
 	public int getApt_APTGNo() {
 		return apt_APTGNo;
 	}

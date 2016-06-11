@@ -21,7 +21,7 @@ public class PublicmanageDataController {
 	@Autowired
 	private PublicManageService service;
 	
-	//나의 공동관리비
+	//연도별 나의 관리비 
 	@RequestMapping("/publicdata")
 	public List<Graph> getGraph(HttpSession session){
 	Member m = (Member)session.getAttribute("member");
@@ -31,7 +31,7 @@ public class PublicmanageDataController {
 		Graph g = new Graph();
 		System.out.println(list.get(i).getPm_publicFeeNo());
 		g.setD(list.get(i).getPm_publicFeeNo());
-		g.set관리비(list.get(i).getPm_clean()+list.get(i).getPm_general()+list.get(i).getPm_maintain()+
+		g.setManageFee(list.get(i).getPm_clean()+list.get(i).getPm_general()+list.get(i).getPm_maintain()+
 				list.get(i).getPm_liftMaintain()+list.get(i).getPm_security()+list.get(i).getPm_foodWaste()+
 				list.get(i).getPm_fireInsurance()+list.get(i).getPm_commission()+list.get(i).getPm_meeting()+
 				list.get(i).getPm_publicElectric()+list.get(i).getPm_liftElectric()+list.get(i).getPm_TVFee()+
@@ -47,22 +47,36 @@ public class PublicmanageDataController {
 	public List<Graph> getCityGraph(HttpSession session){
 		Member m = (Member)session.getAttribute("member");
 		List<PublicManagementFee> list =	service.getCityGraph(m.getApt_APTGNo());
-		List list2 = new ArrayList();
+		List list3 = new ArrayList<>();
 		for(int i=0;i<list.size();i++){
 			Graph g = new Graph();
-			System.out.println(list.get(i).getPm_publicFeeNo());
 			g.setD(list.get(i).getPm_publicFeeNo());
-			g.set관리비(list.get(i).getPm_clean()+list.get(i).getPm_general()+list.get(i).getPm_maintain()+
-					list.get(i).getPm_liftMaintain()+list.get(i).getPm_security()+list.get(i).getPm_foodWaste()+
-					list.get(i).getPm_fireInsurance()+list.get(i).getPm_commission()+list.get(i).getPm_meeting()+
-					list.get(i).getPm_publicElectric()+list.get(i).getPm_liftElectric()+list.get(i).getPm_TVFee()+
-					list.get(i).getPm_disinfection());
-			list2.add(g);
+			g.setManageFee(list.get(i).getPm_clean());
+			g.setManageFee2(list.get(i).getPm_general());
+			list3.add(g);
 		}
-			return list2;
+		
+			return list3;
 	}
 	
-	
+	//전국 평균 관리비
+	@RequestMapping("/countryGraph")
+	public List<Graph> getCountryGraph(HttpSession session){
+		Member m = (Member)session.getAttribute("member");
+		List<PublicManagementFee> list =	service.getContry(m.getApt_APTGNo());
+		
+		List list3 = new ArrayList();
+		for(int i=0;i<list.size();i++){
+			Graph g = new Graph();
+			g.setD(list.get(i).getPm_publicFeeNo());
+			g.setManageFee(list.get(i).getPm_clean());
+			g.setManageFee2(list.get(i).getPm_general());
+			list3.add(g);
+			
+			list3.add(g);
+		}
+		return list3;
+	}
 	
 	
 	
@@ -76,7 +90,7 @@ public class PublicmanageDataController {
 			Graph g = new Graph();
 			System.out.println(list.get(i).getPm_publicFeeNo());
 			g.setD(list.get(i).getPm_publicFeeNo());
-			g.set관리비(list.get(i).getPm_clean()+list.get(i).getPm_general()+list.get(i).getPm_maintain()+
+			g.setManageFee(list.get(i).getPm_clean()+list.get(i).getPm_general()+list.get(i).getPm_maintain()+
 					list.get(i).getPm_liftMaintain()+list.get(i).getPm_security()+list.get(i).getPm_foodWaste()+
 					list.get(i).getPm_fireInsurance()+list.get(i).getPm_commission()+list.get(i).getPm_meeting()+
 					list.get(i).getPm_publicElectric()+list.get(i).getPm_liftElectric()+list.get(i).getPm_TVFee()+

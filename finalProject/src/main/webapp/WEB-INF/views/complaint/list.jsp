@@ -78,9 +78,24 @@
 
 							<tr>
 								<td>${Complaint.cp_complaintNo}</td>
-								<td><a
-									href='/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&cp_complaintNo=${Complaint.cp_complaintNo}'>
-										${Complaint.cp_title} </a>
+								<td>
+								<c:choose>
+								<c:when test="${Complaint.cp_flag ==1}">
+								<c:choose>
+								<c:when test="${member.m_memberNo ==Complaint.m_memberNo||member.grade >2}">
+								<a href='/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&cp_complaintNo=${Complaint.cp_complaintNo}'>
+									${Complaint.cp_title} </a>
+								</c:when>
+								<c:otherwise>
+								  <p>사용자의 요청에 의해 비공개처리되었습니다.</p>
+								</c:otherwise>
+								</c:choose>
+								</c:when>
+								<c:otherwise>
+								<a href='/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&cp_complaintNo=${Complaint.cp_complaintNo}'>
+									${Complaint.cp_title} </a>
+								</c:otherwise>
+								</c:choose>
 										<c:if test="${Complaint.cp_ref !=0 }">
 										<strong>[${Complaint.cp_ref }]</strong>
 										</c:if>

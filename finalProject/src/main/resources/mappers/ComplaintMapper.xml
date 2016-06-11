@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into complaint
-		values(seq_complaint.nextval, #{cp_title},#{cp_content},'처리대기중', 0,#{cp_date},#{m_memberNo}, 1)
+		values(seq_complaint.nextval, #{cp_title},#{cp_content},'처리대기중', 0,#{cp_flag},#{cp_date},#{m_memberNo}, 1)
 	</insert>
 	
 	

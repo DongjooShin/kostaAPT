@@ -45,16 +45,34 @@ public class PublicManageDao {
 				 sqlSession.selectList(namespace+".selectMonthPublicmanage", map);
 	}
 	public List<PublicManagementFee> selectPublicmanage(int aptgno){
+		 Calendar calendar = new GregorianCalendar(Locale.KOREA);
 		
-		return sqlSession.selectList(namespace+".selectPublicmanage",aptgno);
+		String day = Integer.toString(calendar.get(Calendar.YEAR));
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("apt_aptgno", aptgno);
+		map.put("day", day);
+		
+		return sqlSession.selectList(namespace+".selectPublicmanage",map);
 	}
 	public List<PublicManagementFee> MonthManageFee(int aptgno) {
 		// TODO Auto-generated method stub
+		
+		
 		return sqlSession.selectList(namespace+".MonthManageFee",aptgno);
 	}
-	public List<ManagementFee> appropriation(String m_memberNo) {
+	public List<PublicManagementFee> appropriation(int aptgno) {
 		// TODO Auto-generated method stub
-		 return  sqlSession.selectList(namespace+".appropriation",m_memberNo);
+		 Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		 String day= "";
+		 day += calendar.get(Calendar.YEAR);
+		 Map<String, Object> map = new HashMap<>();
+		 
+		 map.put("day", day);
+		 map.put("aptgno", aptgno);
+		
+		 return  sqlSession.selectList(namespace+".appropriation",map);
 	}
 	public List<ManagementFee> DataAppropriation(int aptgno) {
 		// TODO Auto-generated method stub
@@ -63,5 +81,14 @@ public class PublicManageDao {
 	public List<PublicManagementFee> getCityGraph(int apt_APTGNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".getCityGraph", apt_APTGNo);
+	}
+	public List<PublicManagementFee> getContry(int apt_APTGNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".getContry",apt_APTGNo);
+	}
+	public List<PublicManagementFee> myManageFee(int apt_APTGNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".myManageFee", apt_APTGNo);
+		
 	}
 }

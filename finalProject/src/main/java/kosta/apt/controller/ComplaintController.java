@@ -35,7 +35,8 @@ public class ComplaintController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET )
-	public String List(@ModelAttribute("cri") SearchCriteria cri,Model model){
+	public String List(@ModelAttribute("cri") SearchCriteria cri,Model model,HttpSession session){
+			model.addAttribute("member",(Member)session.getAttribute("member"));
 		   model.addAttribute("list", service.listSearchCriteria(cri));
 		   PageMaker pagemaker = new PageMaker();
 		   pagemaker.setCri(cri);
@@ -53,6 +54,7 @@ public class ComplaintController {
 	}
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String List(Complaint complaint,HttpSession session){
+		System.out.println(complaint.getCp_flag()+"값이 넘어온다~~~~~~");
 		Member member = (Member) session.getAttribute("member");
 		
 		complaint.setM_memberNo(member.getM_memberNo());

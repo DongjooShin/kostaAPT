@@ -29,9 +29,9 @@ public class PublicManageService {
 	public List<PublicManagementFee> MonthManageFee(int aptgno){
 		return dao.MonthManageFee(aptgno);
 	}
-	public List<ManagementFee> getappropriation(String m_memberNo) {
+	public List<PublicManagementFee> getappropriation(int aptgno) {
 		// TODO Auto-generated method stub
-		return dao.appropriation(m_memberNo);
+		return dao.appropriation(aptgno);
 	}
 	public List<ManagementFee> DataAppropriation(int aptgno) {
 		// TODO Auto-generated method stub
@@ -40,5 +40,13 @@ public class PublicManageService {
 	public List<PublicManagementFee> getCityGraph(int apt_APTGNo) {
 		// TODO Auto-generated method stub
 		return dao.getCityGraph(apt_APTGNo);
+	}
+	public List<PublicManagementFee> getContry(int apt_APTGNo) {
+		// TODO Auto-generated method stub
+		return dao.getContry(apt_APTGNo);
+	}
+	public List<PublicManagementFee> myManageFee(int apt_APTGNo) {
+		// TODO Auto-generated method stub
+		return dao.myManageFee(apt_APTGNo);
 	}
 }
