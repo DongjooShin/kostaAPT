@@ -38,6 +38,30 @@
 			$('#thirdContent').css('display', 'block');
 
 		});
+		
+		$('#fourthManu').click(function() {
+			$('.manu').css('background-color', 'rgba(0, 0, 0, 0.3)');
+			$('#fourthManu').css('background-color', '#09b9e5');
+			$('.content').css('display', 'none');
+			$('#fourthContent').css('display', 'block');
+
+		});
+		
+		$('#fifthManu').click(function() {
+			$('.manu').css('background-color', 'rgba(0, 0, 0, 0.3)');
+			$('#fifthManu').css('background-color', '#09b9e5');
+			$('.content').css('display', 'none');
+			$('#fifthContent').css('display', 'block');
+
+		});
+		
+		$('#sixthManu').click(function() {
+			$('.manu').css('background-color', 'rgba(0, 0, 0, 0.3)');
+			$('#sixthManu').css('background-color', '#09b9e5');
+			$('.content').css('display', 'none');
+			$('#sixthContent').css('display', 'block');
+
+		});
 
 	});
 </script>
@@ -63,8 +87,10 @@
 #mypageLayout {
 	border: 3px solid #eaeaea;
 	border-top: 4px solid #09b9e5;
-	height: 350px;
-	min-height: 340px;
+	/* height: 350px;
+	min-height: 340px; */
+	display:inline-block;
+	width: 100%;
 	margin-top: 70px;
 }
 
@@ -72,8 +98,6 @@
 	display: none;
 	margin-top: 15px;
 }
-
-
 </style>
 </head>
 <body>
@@ -82,46 +106,51 @@
 		<jsp:include page="../include/head.jsp"></jsp:include>
 
 	</div>
-	<div id="page" style="background: white; height: 500px;">
+	<div id="page" style="background: white; display:inline-block; padding-bottom: 50px;margin-left: 7.9%;">
 		<div class="col-md-12">
 			<div id="mypageLayout">
 				<ul id=mypageUl>
-					<li id="firstManu" class="manu ">Properties</li>
-					<li id="secondManu" class="manu">Flights</li>
-					<li id="thirdManu" class="manu">Vacations</li>
+					<li id="firstManu" class="manu ">커뮤니티</li>
+					<li id="secondManu" class="manu">관리비</li>
+					<li id="thirdManu" class="manu">문의답변</li>
+					<li id="fourthManu" class="manu">1:1:문의</li>
+					<li id="fifthManu" class="manu">쪽 지</li>
+					<li id="sixthManu" class="manu">개인정보 수정</li>
 				</ul>
 				<br>
-				
-				
-				<div class="col-md-12" >
-					<div id="firstContent" class="content  " style=" height: 300px;">
-							
-					
+
+
+				<div class="col-md-12">
+					<div id="firstContent" class="content  " style="height: 500px;">
+
+
 					</div>
 				</div>
-				
-				<div class="col-md-12"> 
-					<div id="secondContent" class="content "  	style="background: orange; height: 300px;" >
 
-					</div>
-					</div>
-					
-				<div class="col-md-12" >
+				<div class="col-md-12">
+					<div id="secondContent" class="content "
+						style="background: orange; height: 500px;"></div>
+				</div>
 
-				<div id="thirdContent" class="content "  style="background: red; height: 300px;">
+				<div class="col-md-12">
+					<div id="thirdContent" class="content "
+						style="background: red; height: 500px;"></div>
+				</div>
 
+				<div class="col-md-12">
+					<div id="fourthContent" class="content "
+						style="background: red; height: 500px;"></div>
+				</div>
+				<div class="col-md-12">
+					<div id="fifthContent" class="content "
+						style="background: green; height: 600px;"></div>
+				</div>
+				<div class="col-md-12">
+					<div id="sixthContent" class="content "
+						style="background: black; height: 500px;"></div>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
 		</div>
-	</div>
 	</div>
 
 

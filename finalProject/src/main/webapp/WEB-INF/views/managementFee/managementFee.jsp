@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,12 +8,11 @@
 </head>
 <body>
 	<div class="header">
-		<jsp:include page="../include/head.jsp"></jsp:include>
+		 <jsp:include page="../include/head.jsp"></jsp:include> 
 	</div>
-	<div class="body" id="page">
-			<jsp:include page="../../../resources/editor/SmartEditor2.jsp"></jsp:include>
-
+	<div class="main">
+		<jsp:include page="managementFeeInsert.jsp"></jsp:include>
 	</div>
-
+	<div class="footer"></div>
 </body>
 </html>

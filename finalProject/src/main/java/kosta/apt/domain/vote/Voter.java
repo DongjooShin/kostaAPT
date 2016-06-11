@@ -8,12 +8,12 @@ public class Voter implements Serializable {
 	private int v_roomNo;
 	private String m_memberNo;
 	private int apt_APTGNo;
-	private int v_group;
+	private String v_group;
 	
 	public Voter() {
 		super();
 	}
-	public Voter(int v_voterNo, int v_buildingNo, int v_roomNo, String m_memberNo, int apt_APTGNo,int v_group) {
+	public Voter(int v_voterNo, int v_buildingNo, int v_roomNo, String m_memberNo, int apt_APTGNo,String v_group) {
 		super();
 		this.v_voterNo = v_voterNo;
 		this.v_buildingNo = v_buildingNo;
@@ -23,10 +23,10 @@ public class Voter implements Serializable {
 		this.v_group = v_group;
 	}
 	
-	public int getV_group() {
+	public String getV_group() {
 		return v_group;
 	}
-	public void setV_group(int v_group) {
+	public void setV_group(String v_group) {
 		this.v_group = v_group;
 	}
 	public int getApt_APTGNo() {

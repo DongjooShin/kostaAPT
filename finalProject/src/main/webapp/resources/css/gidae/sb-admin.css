@@ -6,8 +6,9 @@
 
 /* Global Styles */
 
+
 body {
-    margin-top: 100px;
+  
     background-color: white;
 }
 table{
@@ -16,7 +17,7 @@ table{
 }
 @media(min-width:768px) {
     body {
-        margin-top: 50px;
+      
     }
 }
 
@@ -190,15 +191,7 @@ ul.alert-dropdown {
     color: #3d8b3d;
 }
 
-.panel-red {
-    border-color: #d9534f;
-}
 
-.panel-red .panel-heading {
-    border-color: #d9534f;
-    color: #fff;
-    background-color: #d9534f;
-}
 
 .panel-red a {
     color: #d9534f;

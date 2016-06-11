@@ -75,7 +75,9 @@ body {
   top: 11px;
   left: -6px;
 }
-
+.navbar li{
+	font-size: 15px;
+}
 /** Global **/
 #content {
   margin-left:0px;
@@ -87,7 +89,7 @@ body {
   margin-bottom: 5px;
 }
 .breadcrumb {
-	margin: 0 0 0px;
+	margin: 0px;
 	padding: 10px 0px;
 	background-color: transparent;
 }

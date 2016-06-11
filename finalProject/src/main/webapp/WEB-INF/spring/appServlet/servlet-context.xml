@@ -34,10 +34,18 @@
 <interceptors>
 <!-- 	<interceptor>
 		<mapping path="/member/test"/>
+		<mapping path="/PublicManageFee"/>
+		<mapping path="/Mypage"/>
+		<mapping path="/list"/>
+		<mapping path="/siteNotice/inquiryMain"/>
 		<beans:ref bean="authInterceptor"/>
 	</interceptor> -->
 	<interceptor>
+		<mapping path="/PublicManageFee"/>
+		<mapping path="/Mypage"/>
+		<mapping path="/list"/>
 		<mapping path="/member/*"/>
+		<mapping path="/siteNotice/inquiryMain"/>
 		<beans:ref bean="loginInterceptor"/>
 	</interceptor>
 

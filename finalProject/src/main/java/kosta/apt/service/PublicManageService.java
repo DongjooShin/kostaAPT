@@ -25,4 +25,7 @@ public class PublicManageService {
 	public List<PublicManagementFee> selectPublicmanage(){
 		return dao.selectPublicmanage();
 	}
+	public List<PublicManagementFee> MonthManageFee(){
+		return dao.MonthManageFee();
+	}
 }

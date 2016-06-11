@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kosta.apt.mapper.SiteNoticeMapper"> <!-- namespace를 꼭 맞게 써주어야함 -->
+
+	<cache />
+		
+	<select id="maxSnNo" resultType="Integer">
+		select max(sn_sitenoticeno) from sitenotice
+	</select>
+	
+	<insert id="insertSN" parameterType="SiteNotice">
+		insert into sitenotice(sn_sitenoticeno,sn_title,sn_date,sn_content,sn_hit,sn_filename,m_memberno) 
+			values(#{sn_siteNoticeNo},#{sn_title},sysdate,#{sn_content},0,#{sn_fileName},#{m_memberNo})
+	</insert>
+	
+	   <!-- search관련된 xml -->
+	<sql id="search">
+	    <if test="searchType != null" >
+	      <if test="searchType == 't'.toString()">
+	         where sn_title like '%'|| #{keyword}||'%'
+	      </if>
+	      <if test="searchType == 'w'.toString()">
+	      	 where m_memberNo like '%'|| #{keyword}||'%'
+	      </if>    
+	    </if> 
+	</sql>
+	
+	<select id="selectList" parameterType="SNSearchCriteria" resultType="SiteNotice">
+		 <![CDATA[  
+		     select * from sitenotice
+	 	 ]]>  
+	   
+	     <include refid="search"></include>
+	     
+		 <![CDATA[    
+		     order by sn_sitenoticeno desc     
+		 ]]>  
+	
+	</select>
+	
+	<select id="selectOne" parameterType="SNSearchCriteria" resultType="int">
+		   <![CDATA[  
+		     select count(*) 
+		     from sitenotice 
+		   ]]>
+    	   <include refid="search"></include>
+    
+	</select>
+	
+	
+   <select id="snRead" resultType="SiteNotice">
+      select * from sitenotice where sn_siteNoticeNo=#{sn_siteNoticeNo}
+   </select>
+   
+   <update id="snHitCount" parameterType="int">
+      update sitenotice set sn_hit=sn_hit+1 where sn_siteNoticeNo = #{sn_siteNoticeNo}
+   </update>
+   
+   <update id="snModify" parameterType="SiteNotice">
+      update sitenotice set sn_title=#{sn_title}, sn_content=#{sn_content}
+	      where sn_siteNoticeNo=#{sn_siteNoticeNo}
+   </update>
+   
+   <delete id="snDelete" parameterType="int">
+      delete from sitenotice where sn_siteNoticeNo=#{sn_siteNoticeNo}
+   </delete>
+   
+   
+   	<select id="maxQnANo" resultType="Integer">
+		select max(qnano) from qna
+	</select>
+	
+   <insert id="inquiryInsert" parameterType="QnA">
+   		insert into qna(qnaNo,q_name,q_email,q_title,q_content,q_date,q_filename,q_ref,q_state,m_memberno) 
+   			values(#{qnaNo},#{q_name},#{q_email},#{q_title},#{q_content},sysdate,#{q_fileName},#{qnaNo},1,#{m_memberNo})
+   </insert>
+   
+   <select id="selectAllQnAList" resultType="QnA">
+   		select * from qna where qnano = q_ref
+   </select>
+</mapper>
+
+
+
+
+
+
+
+

@@ -1,10 +1,9 @@
-package kosta.apt.domain.Property;
+package kosta.apt.domain.SiteNotice;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class PropertyPageMaker {
-
+public class SNPageMaker {
 	private int totalCount;
 	private int startPage;
 	private int endPage;
@@ -13,9 +12,9 @@ public class PropertyPageMaker {
 
 	private int displayPageNum = 5;
 
-	private PropertyCriteria cri;
+	private SNCriteria cri;
 
-	public void setCri(PropertyCriteria cri) {
+	public void setCri(SNCriteria cri) {
 		this.cri = cri;
 	}
 
@@ -67,7 +66,7 @@ public class PropertyPageMaker {
 		return displayPageNum;
 	}
 
-	public PropertyCriteria getCri() {
+	public SNCriteria getCri() {
 		return cri;
 	}
 
@@ -81,12 +80,10 @@ public class PropertyPageMaker {
 
 	public String makeSearch(int page) {
 
-		UriComponents uriComponents = UriComponentsBuilder.newInstance()
-				.queryParam("page", page)
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", cri.getPerPageNum())
-/*				.queryParam("searchType", ((SearchCriteria) cri).getSearchType())
-				.queryParam("keyword", ((SearchCriteria) cri).getKeyword())*/
-				.build();
+				.queryParam("searchType", ((SNSearchCriteria) cri).getSearchType())
+				.queryParam("keyword", ((SNSearchCriteria) cri).getKeyword()).build();
 
 		return uriComponents.toUriString();
 	}

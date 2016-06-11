@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import kosta.apt.domain.Message.Message;
 import kosta.apt.domain.Message.MessageCriteria;
 import kosta.apt.domain.Paging.Criteria;
@@ -59,6 +60,24 @@ public class MessageService {
 	public int sendPage(Criteria cri) {
 		
 		return msgDao.sendPage(cri);
+	}
+
+	public Message detailmsg(int msgno) {
+		Message message = null;
+		message =msgDao.detailmsg(msgno);;
+		
+		return message;
+	}
+
+	public void delectMsg(int msgNo) {
+		
+		msgDao.delectMsg(msgNo);
+	}
+
+	public void updateState(int msgno) {
+		
+		msgDao.updateState(msgno);
+		
 	}
 	
 

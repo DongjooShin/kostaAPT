@@ -3,23 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
-
-
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		
 <!-- Main content -->
 <section class="content">
 	<div class="row">
 		<!-- left column -->
-
-
-		<div class="col-md-12">
+	<div class="col-lg-12">
+	<div class="col-lg-1"></div>
+		<div class="col-lg-10" style="background-color: white;">
 			<!-- general form elements -->
 			<div class='box'>
 				<div class="box-header with-border">
-					<h3 class="box-title">Board List</h3>
+					<h3 class="box-title">건의 / 불만 게시판</h3>
 				</div>
 
 
-				<div class='box-body'>
+					<div class='box-body'>
 
 					<select name="searchType">
 						<option value="n"
@@ -27,26 +27,34 @@
 							---</option>
 						<option value="t"
 							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							Title</option>
+							제목</option>
 						<option value="c"
 							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							Content</option>
+							내용</option>
 						<option value="w"
 							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-							Writer</option>
+							글쓴이</option>
 						<option value="tc"
 							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							Title OR Content</option>
+							제목 OR 내용</option>
 						<option value="cw"
 							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							Content OR Writer</option>
+							내용 OR 글쓴이</option>
 						<option value="tcw"
 							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							Title OR Content OR Writer</option>
-					</select> <input type="text" name='keyword' id="keywordInput"
-						value='${cri.keyword }'>
-					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New Board</button>
+							제목 OR 내용 OR 글쓴이</option>
+					</select> 
+					<c:choose>
+					<c:when test="${cri.keyword ==null }">
+											
+					<input type="text" name='keyword' id="keywordInput" placeholder="검색어를 작성해 주세요">
+					</c:when>
+					<c:otherwise>
+					<input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'>
+					</c:otherwise>
+					</c:choose>
+					<button id='searchBtn' onclick="search()">Search</button>
+					<button id='newBtn' onclick="newCreate()">New 글쓰기</button>
 
 				</div>
 			</div>
@@ -59,26 +67,27 @@
 				<div class="box-body">
 					<table class="table table-bordered">
 						<tr>
-							<th style="width: 10px">BNO</th>
+							<th >BNO</th>
 							<th>TITLE</th>
 							<th>WRITER</th>
-							<th>REGDATE</th>
-							<th style="width: 40px">VIEWCNT</th>
+							<th >date</th>
+							<th >처리상태</th>
 						</tr>
 
-						<c:forEach items="${list}" var="boardVO">
+						<c:forEach items="${list}" var="Complaint">
 
 							<tr>
-								<td>${boardVO.bno}</td>
+								<td>${Complaint.cp_complaintNo}</td>
 								<td><a
-									href='/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&bno=${boardVO.bno}'>
-										${boardVO.title} </a>
-										<strong>[${boardVO.replycnt }]</strong>
+									href='/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&cp_complaintNo=${Complaint.cp_complaintNo}'>
+										${Complaint.cp_title} </a>
+										<c:if test="${Complaint.cp_ref !=0 }">
+										<strong>[${Complaint.cp_ref }]</strong>
+										</c:if>
 										</td>
-								<td>${boardVO.writer}</td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-										value="${boardVO.regdate}" /></td>
-								<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
+								<td>${Complaint.m_memberNo}</td>
+								<td><span class="badge bg-red">${Complaint.cp_date }</span></td>
+								<td>${Complaint.cp_state }</td>
 							</tr>
 
 						</c:forEach>
@@ -120,6 +129,8 @@
 		</div>
 		<!--/.col (left) -->
 
+	<div class="col-lg-1"></div>
+	</div>
 	</div>
 	<!-- /.row -->
 </section>
@@ -135,13 +146,13 @@
 </script>
 
 <script>
-	$(document).ready(
-			function() {
+	$(function () {
+		
 
 				$('#searchBtn').on(
 						"click",
 						function(event) {
-
+							alert('11')
 							self.location = "list"
 									+ '${pageMaker.makeQuery(1)}'
 									+ "&searchType="
@@ -150,12 +161,28 @@
 
 						});
 
-				$('#newBtn').on("click", function(evt) {
-
+				$('#newBtn').on("click", function(event) {
+					alert('11222')
 					self.location = "register";
 
 				});
+	});
 
-			});
 </script>
+<!-- <script>
+	function search() {
+		
+		Location.href = "list"
+			+ '${pageMaker.makeQuery(1)}'
+			+ "&searchType="
+			+ $("select option:selected").val()
+			+ "&keyword=" + $('#keywordInput').val();
+
+	}
+	function newCreate() {
+		alert('dd')
+	Window.href = "register";
+	}
+
+</script> -->
 

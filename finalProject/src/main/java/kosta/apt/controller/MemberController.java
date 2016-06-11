@@ -38,7 +38,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/member/")
 
 public class MemberController {
 
