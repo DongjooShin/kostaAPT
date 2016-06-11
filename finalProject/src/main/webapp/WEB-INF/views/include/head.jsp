@@ -41,12 +41,12 @@
 						</div>
 						<!-- #header-logo-image -->
 						<div id="header-text" class="">
-							<h1 id="site-title">
-								<a href="/main" title="Spacious" rel="home">Apart Manage</a>
-							</h1>
-							<p id="site-description">Apart Manage</p>
-							<!-- #site-description -->
-						</div>
+                     <h1 id="site-title">
+                        <a href="/main" title="Spacious" rel="home">KOPART</a>
+                     </h1>
+                     <p id="site-description">KOSTA Apart Management System</p>
+                     <!-- #site-description -->
+                  </div>
 						<!-- #header-text -->
 					</div>
 					<!-- #header-left-section -->
@@ -83,8 +83,38 @@
 						<h3 class="menu-toggle">Menu</h3>
 						<div class="menu-primary-container">
 							<ul id="menu-primary" class="menu">
-								<li id="menu-item-9"
+
+
+								<li id="menu-item-52"
 									class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7 current_page_item menu-item-9"><a
+									href="http://demo.themegrill.com/spacious/">커뮤니티</a>
+									<ul class="sub-menu">
+										<li id="menu-item-109"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
+											href="managementFeeList">스케줄</a></li>
+										<li id="menu-item-108"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
+											href="http://demo.themegrill.com/spacious/layout/right-sidebar/">아파트시세</a></li>
+										<li id="menu-item-106"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
+											href="http://demo.themegrill.com/spacious/layout/no-sidebar-full-width/">투표</a></li>
+										<li id="menu-item-107"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-107"><a
+											href="/PublicManageFee">중고거래</a></li>
+
+										<li id="menu-item-108"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-107"><a
+											href="/PublicManageFee">설문조사</a></li>
+										<li id="menu-item-109"
+											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-107"><a
+											href="/PublicManageFee">공지사항</a></li>
+
+									</ul></li>
+
+
+
+								<li id="menu-item-9"
+									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-254"><a
 									href="http://demo.themegrill.com/spacious/">관리비</a>
 									<ul class="sub-menu">
 										<li id="menu-item-109"
@@ -106,7 +136,7 @@
 									<ul class="sub-menu">
 										<li id="menu-item-255"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-255"><a
-											href="main.jsp?body=aptNewsMain.jsp">부동산뉴스</a></li>
+											href="/member/aptNews?newsNum=0&page=0">부동산뉴스</a></li>
 										<li id="menu-item-256"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-256"><a
 											href="main.jsp?body=aptNewsMain.jsp">아파트시세</a></li>
@@ -127,24 +157,24 @@
 
 								<li id="menu-item-254"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-254"><a
-									href="/siteNotice/faq">고객센터</a>
+									href="/siteNotice/faqMain">고객센터</a>
 									<ul class="sub-menu">
 										<li id="menu-item-106"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
-											href="/siteNotice/faq">FAQ</a></li>
+											href="/siteNotice/faqMain">FAQ</a></li>
 										<li id="menu-item-107"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a
-											href="/siteNotice/">1:1문의</a></li>
+											href="/siteNotice/inquiryMain">1:1문의</a></li>
 										<li id="menu-item-108"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
 											href="/siteNotice/siteNoticeAllList">공지사항</a></li>
 										<li id="menu-item-109"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a
-											href="/siteNotice/">가입문의</a></li>
+											href="/siteNotice/joinInquiry">가입문의</a></li>
 									</ul></li>
 								<li id="menu-item-105"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-105"><a
-									href="/Mypage">마이페이지</a>
+									href="/member/mypageTest">마이페이지</a>
 									<ul class="sub-menu">
 										<li id="menu-item-110"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a
@@ -173,7 +203,7 @@
 										<li id="menu-item-117"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a
 											href="budgetList">예산조회</a></li>
-																				
+
 
 									</ul></li>
 

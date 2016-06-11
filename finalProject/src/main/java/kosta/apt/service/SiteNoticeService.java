@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kosta.apt.domain.SiteNotice.QnA;
 import kosta.apt.domain.SiteNotice.SNSearchCriteria;
 import kosta.apt.domain.SiteNotice.SiteNotice;
 import kosta.apt.persistence.SiteNoticeDao;
@@ -63,4 +64,24 @@ public class SiteNoticeService {
 		
 	}
 
+	
+//----------------- 1:1--------------------------
+	
+	public void insertInquiry(QnA qna) {
+		
+		snDao.insertInquiry(qna);
+	}
+
+	public Integer maxQnANo() {
+		return snDao.maxQnAno();
+	}
+
+	public List<QnA> selectAllQnAList() {
+		return snDao.selectAllQnAList();
+	}
+
+	
+	
+	
+	
 }

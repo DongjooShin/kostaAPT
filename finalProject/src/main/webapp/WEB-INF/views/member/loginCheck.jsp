@@ -123,7 +123,7 @@ function check(){
 								<input type="submit" value="회원가입하기" ></td>
 							</tr>
 						</table>
-					</form>
+					</form>	
 				</div>
 			</div>
 		</div>

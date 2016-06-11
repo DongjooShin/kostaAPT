@@ -32,8 +32,7 @@
 }
 
 #idCheck {
-	margin: 0;
-	padding: 0 15px;
+
 }
 </style>
 
@@ -54,6 +53,17 @@
 					url,
 					"confirm",
 					"toolbar=no, status=no, menubar=no, location=no, scrollbars=no, resizable=no, width=530, height=250");
+
+		}
+		
+		function certificationCheck() {
+
+			
+			url = "certification";
+			open(
+					url,
+					"certification",
+					"toolbar=no, status=no, menubar=no, location=no, scrollbars=no, resizable=no, width=640, height=350");
 
 		}
 		
@@ -170,8 +180,7 @@
 	<div id="page" class="hfeed site"
 		style="height: 950px; border-top: 2px solid;">
 		<div class="col-md-12">
-			<div class="col-lg-3"
-				style="margin-right: 0; margin-left: 26px; margin-top: 17px;">
+			<div class="col-lg-3" style="margin-right: 0; margin-left: 26px; margin-top: 17px;">
 				<div class="loginSidebar">
 					<jsp:include page="memberSidebar.jsp"></jsp:include>
 				</div>
@@ -197,10 +206,10 @@
 								<div class="col-lg-4">
 									<input type="text" class="form-control" name="m_memberNo" >
 								</div>
-								<div class="col-lg-2">
+								<div class="col-lg-3">
 
 									<button type="button" class="btn btn-primary" id="idCheck"
-										onclick="checkId(this.form)">중복확인</button>
+										onclick="checkId(this.form)" style="width: 100%">중복확인</button>
 
 								</div>
 							</div>
@@ -222,16 +231,26 @@
 								</div>
 							</div>
 						</div>
+						
+							<div class="form-group">
+							<div class="col-lg-12">
+								<label class="col-lg-3 control-label"> 본인인증</label>
+								<div class="col-lg-3">
+										<button type="button" class="btn btn-primary" name="certification" style="width: 100%" id="certification" onclick="certificationCheck()">본인 인증</button>
+								</div >
+								<div class="col-lg-6"> * 본인인증을 하면 이메일이 자동 입력됩니다.</div>
+							</div>
+						</div>
 						<div class="form-group">
 							<div class="col-lg-12">
 								<label class="col-lg-3 control-label">이 메 일</label>
 								<div class="col-lg-3">
-									<input type="text" class="form-control" name="m_email">
+									<input type="text" class="form-control" name="m_email" disabled="disabled">
 								</div>
 								<div class="col-lg-1" id="emailCheck">@</div>
 								<div class="col-lg-2">
 									<input type="text" class="form-control" id="m_domain"
-										name="m_domain">
+										name="m_domain" disabled="disabled">
 								</div>
 								<div class="col-lg-2" id="emailDomain">
 									<select class="form-control" id="select"

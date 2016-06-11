@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>네이버 :: Smart Editor 2 &#8482;</title>
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
@@ -14,11 +14,26 @@
 <body>
 <div></div>
 <div>
-<form action="/siteNotice/snModify" method="post" enctype="multipart/form-data">
-	Title <input type="text"  name="sn_title"  width="30px" value="${sn.sn_title }"/>
-	File <input type="file" name="uploadFile" value="${sn.sn_fileName }">
-	Detail<br><textarea name="sn_content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;">${sn.sn_content }</textarea> 
-	<input type="hidden" name="sn_siteNoticeNo" value="${sn.sn_siteNoticeNo }">
+<c:if test="${msg == 'SUCCESS' }">
+	<script type="text/javascript">
+		alert("1대1 문의 접수완료!");
+	</script>
+</c:if>
+<form action="/siteNotice/inquiryRegist" method="post" enctype="multipart/form-data">
+	Category<select class="form-control" name="q_name" style="width:150px;">
+	  <option>사이트 이용문의</option>
+	  <option>관리비</option>
+	  <option>커뮤니티</option>
+	  <option>부동산</option>
+	  <option>회원 및 개인정보</option>
+	  <option>기타</option>
+	</select>
+	<br>
+	Title <input type="text"  name="q_title"/>
+	File <input type="file" name="q_multipart"/>
+	<br>Email <input type="text" name="q_email" value="${m_email }"/>
+	<br>Detail<br><textarea name="q_content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea> 
+	<input type="hidden" name="m_memberNo" value="${member.m_memberNo }">
 	<input type="button" onclick="submitContents(this);" value="Submit" />
 </form>
 </div>

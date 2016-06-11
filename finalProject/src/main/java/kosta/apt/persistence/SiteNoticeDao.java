@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kosta.apt.domain.SiteNotice.QnA;
 import kosta.apt.domain.SiteNotice.SNSearchCriteria;
 import kosta.apt.domain.SiteNotice.SiteNotice;
 import kosta.apt.mapper.SiteNoticeMapper;
@@ -63,133 +64,23 @@ public class SiteNoticeDao {
 		System.out.println("GN dao update 들어옴");
 		sqlSession.getMapper(SiteNoticeMapper.class).snDelete(sn_siteNoticeNo);
 	}
-	
-	/*
-
-	public List<SiteNotice> gnList(int startRow, Search search, int apt) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		// search�옉 apt ->HashMap
-		HashMap<String, Search> map1 = new HashMap<String, Search>();
-		HashMap<String, Integer> map2 = new HashMap<String, Integer>();
-
-		map1.put("se", search);// 遺�紐� b_step
-		map2.put("a", apt);
-
-		System.out.println("search" + search.toString());
-		System.out.println("apt_no" + apt);
-		return sqlSession.getMapper(GNMapper.class).gnList(new RowBounds(startRow, 10), map1, map2);
-	}
-
-	public SiteNotice selectgnDetail(int g_SiteNoticeNo) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		return sqlSession.getMapper(GNMapper.class).selectgnDetail(g_SiteNoticeNo);
-	}
-
-	public int uphit(int g_SiteNoticeNo) {
-		int re = -1;
-
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
-		try {
-			// 1.媛��옣癒쇱� 留ㅽ띁�뿉 �벑濡�
-			re = sqlSession.getMapper(GNMapper.class).uphit(g_SiteNoticeNo);
-
-			if (re > 0) {
-				sqlSession.commit();
-			} else {
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sqlSession.close();
-		}
-
-		return re;
-	}
-
-	public int updategn(SiteNotice gn) {
-		int re = -1;
-
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
-		try {
-			// 1.媛��옣癒쇱� 留ㅽ띁�뿉 �벑濡�
-			re = sqlSession.getMapper(GNMapper.class).updategn(gn);
-
-			if (re > 0) {
-				sqlSession.commit();
-			} else {
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sqlSession.close();
-		}
-		return re;
-	}
-
-	public int selectgnDel(int gn) {
-		int re = -1;
-
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
-		try {
-			// 1.媛��옣癒쇱� 留ㅽ띁�뿉 �벑濡�
-			re = sqlSession.getMapper(GNMapper.class).selectgnDel(gn);
-
-			if (re > 0) {
-				sqlSession.commit();
-			} else {
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sqlSession.close();
-		}
-		return re;
-	}
-
-	public int countSiteNotice(Search search, int apt) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re = 0;
-		try {
-			HashMap<String, Search> map1 = new HashMap<String, Search>();
-			HashMap<String, Integer> map2 = new HashMap<String, Integer>();
-
-			map1.put("se", search);// 遺�紐� b_step
-			map2.put("a", apt);
-
-			System.out.println("Count search : " + search.toString());
-			System.out.println("Count apt_no : " + apt);
-
-			re = sqlSession.getMapper(GNMapper.class).countSiteNotice(map1, map2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return re;
-	}
-
-	public Integer selectCount(int apt_APTGNo) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re = 0;
-		try {
-			re = sqlSession.getMapper(GNMapper.class).selectCount(apt_APTGNo);
-			System.out.println("selectCount re 媛�: " + re);
-			System.out.println("selectCount apt_ATPGNo 媛�: " + re);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return re;
-	}
-
-
 
 	
-	*/
+//--------------------------1:1--------------------------
 	
+	public void insertInquiry(QnA qna) {
+		System.out.println(qna.toString());
+		sqlSession.getMapper(SiteNoticeMapper.class).inquiryInsert(qna);	
+	}
+
+	public Integer maxQnAno() {
+		return sqlSession.getMapper(SiteNoticeMapper.class).maxQnANo();
+	}
+
+	public List<QnA> selectAllQnAList() {
+		return sqlSession.getMapper(SiteNoticeMapper.class).selectAllQnAList();
+	}
+		
 	
 	
 	

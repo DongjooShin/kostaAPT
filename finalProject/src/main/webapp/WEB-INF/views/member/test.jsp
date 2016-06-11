@@ -21,7 +21,8 @@
 	
 	<div id="page" class="hfeed site" style="height: 800px; border-top: 2px solid;">
 		<div class="col-md-12">
-			
+			<iframe src="http://localhost:8081/finalProject/HomeServlet"
+								frameborder="0" width="1500" height="1900" scrolling="no"></iframe>
 		</div>
 	</div>
 </body>

@@ -7,11 +7,7 @@
 <mapper namespace="kosta.apt.mapper.MemberMapper"> <!-- namespace를 꼭 맞게 써주어야함 -->
    <cache />
  
-   
-	<select id="getState" resultType="addressState">
-			select * from AddressState
-	</select>
-   		
+
 	<select id="getCity" parameterType="int" resultType="addressCity">
 			select * from addressCity where a_stateNum = #{a_stateNum}
 	</select>
@@ -22,7 +18,7 @@
    </select>
    
    
-	<select id="getAptName" parameterType="String" resultType="String">
+	<select id="getAptName" parameterType="String" resultType="aptList">
 			select f_groupname from facilityinfo where f_addr LIKE #{f_addr}
 	</select>
    
@@ -74,7 +70,10 @@
   	where m_memberNo =#{m_memberNo}
    </update>
 
+<insert id="updateRealTransactionPrice"  parameterType="aptTransactionPrice">
    
+  insert into RealTransactionPrice (primaryNum,address,addressNum,aptName, area,contract,aptPrice,floor,builtYear,addressName)values(#{primaryNum},#{address},#{addressNum},#{aptName},#{area},#{contract},#{aptPrice} ,#{floor},#{builtYear},#{addressName})
+</insert>
 </mapper>
 
 

@@ -69,7 +69,18 @@
    </delete>
    
    
+   	<select id="maxQnANo" resultType="Integer">
+		select max(qnano) from qna
+	</select>
+	
+   <insert id="inquiryInsert" parameterType="QnA">
+   		insert into qna(qnaNo,q_name,q_email,q_title,q_content,q_date,q_filename,q_ref,q_state,m_memberno) 
+   			values(#{qnaNo},#{q_name},#{q_email},#{q_title},#{q_content},sysdate,#{q_fileName},#{qnaNo},1,#{m_memberNo})
+   </insert>
    
+   <select id="selectAllQnAList" resultType="QnA">
+   		select * from qna where qnano = q_ref
+   </select>
 </mapper>
 
 
